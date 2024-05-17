@@ -63,7 +63,6 @@ if (Constants.expoConfig?.extra?.storybookEnabled === "true") {
   const Storybook = require("../.storybook").default;
   AppEntryPoint = () => (
     <Wrapper>
-      <Stack.Screen></Stack.Screen>
       <Storybook />
     </Wrapper>
   );
