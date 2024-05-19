@@ -15,7 +15,7 @@ import { config } from "@gluestack-ui/config"
 import { useColorScheme } from "@/hooks/useColorScheme";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync(); // Add a setTimeout here 
 
 function Wrapper({ children }: PropsWithChildren) {
   const colorScheme = useColorScheme();
@@ -30,7 +30,7 @@ function Wrapper({ children }: PropsWithChildren) {
   }, [loaded]);
 
   if (!loaded) {
-    return null;
+    return null; 
   }
 
   return (
