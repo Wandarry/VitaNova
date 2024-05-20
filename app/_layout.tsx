@@ -20,7 +20,7 @@ SplashScreen.preventAutoHideAsync();
 function Wrapper({ children }: PropsWithChildren) {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    Livvic: require("../assets/fonts/Livvic-Regular.ttf"),
   });
 
   useEffect(() => {
