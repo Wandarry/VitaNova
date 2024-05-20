@@ -17,7 +17,10 @@ const custom = {
       primaryDarker: "#081326",
       black: "#3D3D3D",
       red: "#D0342C"
-    }
+    },
+  },
+  globalStyle: {
+    fontFamily: "Livvic"
   }
 }
 
