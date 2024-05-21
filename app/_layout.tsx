@@ -3,7 +3,7 @@ import {
   DefaultTheme,
   ThemeProvider,
 } from "@react-navigation/native";
-import { useFonts } from "expo-font";
+import {  useFonts, Livvic_400Regular, Livvic_500Medium, Livvic_600SemiBold, Livvic_700Bold } from '@expo-google-fonts/livvic';
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { PropsWithChildren, useEffect } from "react";
@@ -19,9 +19,7 @@ SplashScreen.preventAutoHideAsync(); // Add a setTimeout here
 
 function Wrapper({ children }: PropsWithChildren) {
   const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    Livvic: require("../assets/fonts/Livvic-Regular.ttf"),
-  });
+  const [loaded] = useFonts({Livvic_400Regular, Livvic_500Medium, Livvic_600SemiBold, Livvic_700Bold});
 
   useEffect(() => {
     if (loaded) {
