@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { SolidSmall } from '../../components/uikit/Buttons/SolidSmall';
+import { SolidSmallWhite } from '../../components/uikit/Buttons/SolidSmallWhite';
 import { View } from 'react-native';
 import React from 'react';
 
 
-const SolidSmallMeta: Meta<typeof SolidSmall> = {
+const SolidSmallWhiteMeta: Meta<typeof SolidSmallWhite> = {
     title: 'Uikit/Buttons/SolidSmall',
-    component: SolidSmall,
+    component: SolidSmallWhite,
     args: {
         message: 'Suivant',
         isDisabled: false,
@@ -20,6 +20,6 @@ const SolidSmallMeta: Meta<typeof SolidSmall> = {
       ],
   };
 
-  export default SolidSmallMeta;
+  export default SolidSmallWhiteMeta;
 
-export const Basic: StoryObj<typeof SolidSmall> = {};
+export const Basic: StoryObj<typeof SolidSmallWhite> = {};
