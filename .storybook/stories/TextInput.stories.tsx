@@ -14,9 +14,3 @@ const TextInputMeta: Meta<typeof TextInput> = {
   export default TextInputMeta;
 
 export const Basic: StoryObj<typeof TextInput> = {};
-
-
-
-
-
-
