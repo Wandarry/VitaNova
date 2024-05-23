@@ -67,7 +67,7 @@ export const TextAreaInput = ({
         {isInvalid ? (
           <FormControlError>
             {/* <FormControlErrorIcon as={AlertCircleIcon} color="$red"/> */}
-            <FormControlErrorText fontSize="$sm">{error}</FormControlErrorText>
+            <FormControlErrorText fontSize="$sm" color="$red">{error}</FormControlErrorText>
           </FormControlError>
         ) : null}
       </FormControl>

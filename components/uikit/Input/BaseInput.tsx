@@ -70,7 +70,7 @@ const BaseInput = ({
         {isInvalid ? (
           <FormControlError>
             {/* <FormControlErrorIcon as={AlertCircleIcon} /> */}
-            <FormControlErrorText>{error}</FormControlErrorText>
+            <FormControlErrorText color="$red">{error}</FormControlErrorText>
           </FormControlError>
         ) : null}
       </FormControl>

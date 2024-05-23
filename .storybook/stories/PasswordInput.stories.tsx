@@ -7,6 +7,7 @@ const PasswordInputMeta: Meta<typeof PasswordInput> = {
     component: PasswordInput,
     args: {
         isRequired: true,
+        error: "That field is required"
     },
   };
 
