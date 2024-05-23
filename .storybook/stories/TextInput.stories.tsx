@@ -7,6 +7,7 @@ const TextInputMeta: Meta<typeof TextInput> = {
     component: TextInput,
     args: {
         placeholder: 'Enter text...',
+        error: "That field is required"
         //icon: MailIcon,
     },
   };

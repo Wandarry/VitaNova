@@ -6,6 +6,7 @@ const TextAreaInputMeta: Meta<typeof TextAreaInput> = {
   component: TextAreaInput,
   args: {
     placeholder: "Ecrivez...",
+    error: "That field is required"
   },
 };
 
