@@ -1,6 +1,18 @@
-import { config } from "@gluestack-ui/config"
+import { FontResolver } from "@gluestack-style/react";
+import { config } from "@gluestack-ui/config";
 
 import merge from "lodash/merge";
+import { Platform } from "react-native";
+
+const fontResolver = new FontResolver({
+  mapFonts: (style) => {
+    if (Platform.OS !== "web" && style.fontWeight !== undefined) {
+      style.fontFamily = style.fontFamily + "_" + style.fontWeight;
+      style.fontWeight = undefined;
+      style.fontStyle = undefined;
+    }
+  },
+});
 
 const custom = {
   tokens: {
@@ -16,12 +28,13 @@ const custom = {
       primaryDarkActive: "#0a1931",
       primaryDarker: "#081326",
       black: "#3D3D3D",
-      red: "#D0342C"
+      red: "#D0342C",
     },
   },
   globalStyle: {
-    fontFamily: "Livvic"
-  }
-}
+    fontFamily: "Livvic",
+  },
+  plugins: [fontResolver],
+};
 
 export const extendedThemeConfig = merge(config, custom);

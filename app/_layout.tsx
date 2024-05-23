@@ -3,23 +3,37 @@ import {
   DefaultTheme,
   ThemeProvider,
 } from "@react-navigation/native";
-import {  useFonts, Livvic_400Regular, Livvic_500Medium, Livvic_600SemiBold, Livvic_700Bold } from '@expo-google-fonts/livvic';
+import {
+  useFonts,
+  Livvic_400Regular,
+  Livvic_500Medium,
+  Livvic_600SemiBold,
+  Livvic_700Bold,
+  Livvic_900Black,
+} from "@expo-google-fonts/livvic";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { PropsWithChildren, useEffect } from "react";
 import "react-native-reanimated";
 import Constants from "expo-constants";
-import { GluestackUIProvider, Text, Box } from "@gluestack-ui/themed"
+import { GluestackUIProvider} from "@gluestack-ui/themed";
 import { extendedThemeConfig } from "@/theme/gluestack-ui.config";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync(); // Add a setTimeout here 
+SplashScreen.preventAutoHideAsync(); // Add a setTimeout here
 
 function Wrapper({ children }: PropsWithChildren) {
   const colorScheme = useColorScheme();
-  const [loaded] = useFonts({Livvic_400Regular, Livvic_500Medium, Livvic_600SemiBold, Livvic_700Bold});
+  const [loaded] = useFonts({
+    Livvic: Livvic_400Regular,
+    Livvic_400: Livvic_400Regular,
+    Livvic_500: Livvic_500Medium,
+    Livvic_600: Livvic_600SemiBold,
+    Livvic_700: Livvic_700Bold,
+    Livvic_900: Livvic_900Black,
+  });
 
   useEffect(() => {
     if (loaded) {
@@ -28,7 +42,7 @@ function Wrapper({ children }: PropsWithChildren) {
   }, [loaded]);
 
   if (!loaded) {
-    return null; 
+    return null;
   }
 
   return (
