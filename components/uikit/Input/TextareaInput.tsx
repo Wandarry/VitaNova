@@ -1,4 +1,5 @@
 import {
+  AlertCircleIcon,
   Box,
   FormControl,
   FormControlError,
@@ -66,8 +67,8 @@ export const TextAreaInput = ({
         ) : null}
         {isInvalid ? (
           <FormControlError>
-            {/* <FormControlErrorIcon as={AlertCircleIcon} color="$red"/> */}
-            <FormControlErrorText fontSize="$sm" color="$red">{error}</FormControlErrorText>
+            <FormControlErrorIcon as={AlertCircleIcon} color="$red"/>
+            <FormControlErrorText fontSize="$sm">{error}</FormControlErrorText>
           </FormControlError>
         ) : null}
       </FormControl>

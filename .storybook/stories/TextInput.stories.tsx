@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { TextInput } from '../../components/uikit/Input/TextInput';
-//import { MailIcon } from '@gluestack-ui/themed';
+import { User } from '../../components/icons/user';
 
 const TextInputMeta: Meta<typeof TextInput> = {
     title: 'Uikit/Input/TextInput',
     component: TextInput,
     args: {
         placeholder: 'Enter text...',
-        error: "That field is required"
-        //icon: MailIcon,
+        icon: User,
+        error: "Error here"
     },
   };
 

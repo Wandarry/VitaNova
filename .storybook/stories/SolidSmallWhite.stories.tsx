@@ -5,7 +5,7 @@ import React from 'react';
 
 
 const SolidSmallWhiteMeta: Meta<typeof SolidSmallWhite> = {
-    title: 'Uikit/Buttons/SolidSmall',
+    title: 'Uikit/Buttons/SolidSmallWhite',
     component: SolidSmallWhite,
     args: {
         message: 'Suivant',
