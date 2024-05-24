@@ -9,6 +9,9 @@ import {
   FormControlErrorText,
   FormControlHelper,
   FormControlHelperText,
+  InputIcon,
+  FormControlErrorIcon,
+  AlertCircleIcon,
 } from "@gluestack-ui/themed";
 
 export type BaseInputProps = {
@@ -58,8 +61,8 @@ const BaseInput = ({
             value={value}
             onChangeText={onChange}
           />
-          <InputSlot>
-            {/* <InputIcon color="" as={icon} size="lg"/> */}
+          <InputSlot onPress={togglePasswordVisibility}>
+            <InputIcon color="$primaryNormal" as={icon} size="lg"/>
           </InputSlot>
         </Input>
         {help ? (
@@ -69,8 +72,8 @@ const BaseInput = ({
         ) : null}
         {isInvalid ? (
           <FormControlError>
-            {/* <FormControlErrorIcon as={AlertCircleIcon} /> */}
-            <FormControlErrorText color="$red">{error}</FormControlErrorText>
+            <FormControlErrorIcon as={AlertCircleIcon} />
+            <FormControlErrorText>{error}</FormControlErrorText>
           </FormControlError>
         ) : null}
       </FormControl>

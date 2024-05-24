@@ -1,9 +1,9 @@
 import React from "react";
 import { BaseSolidButton } from "./BaseSolidButton";
+import { DoubleArrow } from "@/components/icons/doubleArrow";
 
 export type SolidSmallProps = {
   message: string;
-  icon: React.ElementType;
   value?: string;
   isDisabled: boolean;
   onPress: () => void;
@@ -11,7 +11,6 @@ export type SolidSmallProps = {
 
 export const SolidSmall = ({
     message,
-    icon,
     value,
     onPress,
     isDisabled
@@ -22,7 +21,7 @@ export const SolidSmall = ({
             value={value}
             onPress={onPress}
             isDisabled={isDisabled}
-            icon={icon}
+            icon={DoubleArrow}
             size="small"
         />
     );
