@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { EyeIcon, EyeOffIcon } from "@gluestack-ui/themed";
 import BaseInput from "./BaseInput";
+import { Visibility} from "@/components/icons/visibility";
+import { VisibilityOff } from "@/components/icons/visibilityOff";
 
 export type PasswordInputProps = {
   error?: string;
   help?: string;
   isRequired?: boolean;
-  icon: React.ElementType;
   value?: string;
   onChange?: (value: string) => void;
 };
@@ -15,7 +15,6 @@ export const PasswordInput = ({
   error,
   help,
   isRequired,
-  icon,
   value,
   onChange,
 }: PasswordInputProps) => {
@@ -28,7 +27,7 @@ export const PasswordInput = ({
       error={error}
       help={help}
       isRequired={isRequired}
-      icon={showPassword ? EyeIcon : EyeOffIcon}
+      icon={showPassword ? Visibility : VisibilityOff}
       value={value}
       onChange={onChange}
       type={showPassword ? "text" : "password"}
