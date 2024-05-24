@@ -50,7 +50,7 @@ export const TextAreaInput = ({
         >
           <TextareaInput
             placeholder={placeholder}
-            fontSize="$md"
+            fontSize={15}
             p="$0"
             placeholderTextColor="$primaryNormal"
             color="$primaryNormal"
@@ -60,7 +60,7 @@ export const TextAreaInput = ({
         </Textarea>
         {help ? (
           <FormControlHelper>
-            <FormControlHelperText fontSize="$sm" color="$black">
+            <FormControlHelperText fontFamily="Livvic" fontSize="$sm" color="$black">
               {help}
             </FormControlHelperText>
           </FormControlHelper>
