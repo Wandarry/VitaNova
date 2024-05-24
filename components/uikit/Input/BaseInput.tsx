@@ -37,13 +37,13 @@ const BaseInput = ({
   type = "text",
   togglePasswordVisibility,
 }: BaseInputProps) => {
-    const isInvalid = error ? true : false;
+  const isInvalid = error ? true : false;
 
   return (
     <Box>
       <FormControl isInvalid={isInvalid} isRequired={isRequired}>
         <Input
-          px="$4"
+          px="$2"
           h={58}
           borderRadius="$xl"
           borderWidth="$1"
@@ -54,12 +54,13 @@ const BaseInput = ({
           <InputField
             type={type}
             placeholder={placeholder}
-            fontSize="$md"
+            fontSize={15}
             p="$0"
             placeholderTextColor="$primaryNormal"
             color="$primaryNormal"
             value={value}
             onChangeText={onChange}
+            fontFamily="Livvic"
           />
           <InputSlot onPress={togglePasswordVisibility}>
             <InputIcon color="$primaryNormal" as={icon} size="lg"/>
@@ -67,7 +68,9 @@ const BaseInput = ({
         </Input>
         {help ? (
           <FormControlHelper>
-            <FormControlHelperText>{help}</FormControlHelperText>
+            <FormControlHelperText fontFamily="Livvic" color="$black">
+              {help}
+            </FormControlHelperText>
           </FormControlHelper>
         ) : null}
         {isInvalid ? (
