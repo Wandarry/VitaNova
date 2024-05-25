@@ -4,7 +4,7 @@ import { NewsTag } from '../../components/uikit/NewsTag';
 import React from 'react';
 
 const NewsTagMeta: Meta<typeof NewsTag> = {
-  title: 'uikit/NewsTag',
+  title: 'Uikit/NewsTag',
   component: NewsTag,
   args: {
     title: 'Hello world',

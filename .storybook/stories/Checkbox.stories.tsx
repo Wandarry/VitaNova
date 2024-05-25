@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { CheckBox } from '../../components/uikit/Checkbox';
 
 const CheckBoxMeta: Meta<typeof CheckBox> = {
-  title: 'uikit/Input/CheckBox',
+  title: 'Uikit/Input/CheckBox',
   component: CheckBox,
   args: {
     label: 'Hello world',
