@@ -29,7 +29,7 @@ export const BaseSolidButton = ({
   return (
     <Button
       minHeight={55}
-      px={size === 'small' ? "$6" : null}
+      px={size === 'small' ? "$4" : null}
       maxWidth={size === 'long' ? "$full" : null}
       display="flex"
       alignItems="center"
@@ -37,7 +37,7 @@ export const BaseSolidButton = ({
       isDisabled={isDisabled}
       bgColor={bgColor}
       borderRadius="$2xl"
-      $pressed-bgColor={pressedBgColor}
+      $active-bgColor={pressedBgColor}
       $disabled-opacity="$50"
       onPress={onPress}
     >
