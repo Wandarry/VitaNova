@@ -4,7 +4,7 @@ import { RadioButton } from '../../components/uikit/RadioButton';
 import React from 'react';
 
 const RadioButtonMeta: Meta<typeof RadioButton> = {
-  title: 'uikit/Input/RadioButton',
+  title: 'Uikit/Input/RadioButton',
   component: RadioButton,
   args: {
     label: "Tous les organes et tissus nécessaires",
