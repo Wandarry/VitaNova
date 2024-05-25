@@ -1,6 +1,7 @@
 import { FontResolver } from "@gluestack-style/react";
 import { config } from "@gluestack-ui/config";
-
+import { AnimationResolver } from "@gluestack-style/animation-resolver";
+import { MotionAnimationDriver } from '@gluestack-style/legend-motion-animation-driver';
 import merge from "lodash/merge";
 import { Platform } from "react-native";
 
@@ -34,7 +35,7 @@ const custom = {
   globalStyle: {
     fontFamily: "Livvic",
   },
-  plugins: [fontResolver],
+  plugins: [fontResolver, new AnimationResolver(MotionAnimationDriver)],
 };
 
 export const extendedThemeConfig = merge(config, custom);
