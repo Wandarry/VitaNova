@@ -1,37 +1,24 @@
-import React, { useState } from "react";
-import BaseInput from "./BaseInput";
-import { Visibility} from "@/components/icons/visibility";
-import { VisibilityOff } from "@/components/icons/visibilityOff";
+import { useField } from "formik";
+import {
+  PasswordInput as PasswordInputDumb,
+  PasswordInputProps as PasswordInputDumbProps,
+} from "./dumb/PasswordInput";
 
-export type PasswordInputProps = {
-  error?: string;
-  help?: string;
-  isRequired?: boolean;
-  value?: string;
-  onChange?: (value: string) => void;
-};
+interface PasswordInputProps
+  extends Omit<PasswordInputDumbProps, "value" | "onChange" | "error"> {
+  name: string;
+}
 
-export const PasswordInput = ({
-  error,
-  help,
-  isRequired,
-  value,
-  onChange,
-}: PasswordInputProps) => {
-  const [showPassword, setShowPassword] = useState(false);
-  const togglePasswordVisibility = () => setShowPassword(!showPassword);
-
+const PasswordInput = ({ name, ...props }: PasswordInputProps) => {
+  const [{ value }, { error }, { setValue }] = useField<string>(name);
   return (
-    <BaseInput
-      placeholder="Mot de passe"
+    <PasswordInputDumb
       error={error}
-      help={help}
-      isRequired={isRequired}
-      icon={showPassword ? Visibility : VisibilityOff}
       value={value}
-      onChange={onChange}
-      type={showPassword ? "text" : "password"}
-      togglePasswordVisibility={togglePasswordVisibility}
+      onChange={setValue}
+      {...props}
     />
   );
 };
+
+export default PasswordInput;

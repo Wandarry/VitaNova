@@ -63,7 +63,7 @@ const BaseInput = ({
             fontFamily="Livvic"
           />
           <InputSlot onPress={togglePasswordVisibility}>
-            <InputIcon color="$primaryNormal" as={icon} size="lg"/>
+            <InputIcon color="$primaryNormal" as={icon} size="lg" />
           </InputSlot>
         </Input>
         {help ? (
