@@ -1,16 +1,19 @@
-import React from "react";
-import BaseInput from "./BaseInput";
+import { useField } from "formik";
+import {
+  TextInput as TextInputDumb,
+  TextInputProps as TextInputDumbProps,
+} from "./dumb/TextInput";
 
-export type TextInputProps = {
-  placeholder: string;
-  error?: string;
-  help?: string;
-  isRequired?: boolean;
-  icon: React.ElementType;
-  value?: string;
-  onChange?: (value: string) => void;
+interface TextInputProps
+  extends Omit<TextInputDumbProps, "value" | "onChange" | "error"> {
+  name: string;
+}
+
+const TextInput = ({ name, ...props }: TextInputProps) => {
+  const [{ value }, { error }, { setValue }] = useField<string>(name);
+  return (
+    <TextInputDumb error={error} value={value} onChange={setValue} {...props} />
+  );
 };
 
-export const TextInput = (props: TextInputProps) => {
-  return <BaseInput {...props} type="text" />;
-};
+export default TextInput;
