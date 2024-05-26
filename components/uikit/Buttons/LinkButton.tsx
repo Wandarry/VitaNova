@@ -13,10 +13,18 @@ export const LinkButton = ({
   title,
   isDisabled,
   onpress,
-  withIcon= false,
+  withIcon = false,
 }: LinkButtonProps) => {
   return (
-    <Button variant="link" onPress={onpress} isDisabled={isDisabled} $disabled-opacity="$50" $active-opacity="$60">
+    <Button
+      variant="link"
+      onPress={onpress}
+      isDisabled={isDisabled}
+      $disabled-opacity="$50"
+      $active-opacity="$60"
+      justifyContent="flex-start"
+      maxWidth={"50%"}
+    >
       <ButtonText
         color="$primaryNormal"
         fontSize="$md"
@@ -27,12 +35,7 @@ export const LinkButton = ({
         {title}
       </ButtonText>
       {withIcon ? (
-        <ButtonIcon
-          as={East}
-          h={16}
-          w={16}
-          color="$primaryNormal"
-        />
+        <ButtonIcon as={East} h={16} w={16} color="$primaryNormal" />
       ) : null}
     </Button>
   );
