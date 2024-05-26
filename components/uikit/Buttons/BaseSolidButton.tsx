@@ -1,18 +1,23 @@
 import React from "react";
-import { Button, ButtonText, ButtonIcon, ButtonSpinner } from '@gluestack-ui/themed';
+import {
+  Button,
+  ButtonText,
+  ButtonIcon,
+  ButtonSpinner,
+} from "@gluestack-ui/themed";
 
 export type BaseSolidButtonProps = {
-    message: string;
-    value?: string;
-    isDisabled: boolean;
-    isLoading?: boolean;
-    icon?: React.ElementType;
-    onPress?: () => void;
-    size: 'small' | 'long';
-    messageColor?: string;
-    bgColor?: string;
-    pressedBgColor?: string;
-}
+  message: string;
+  value?: string;
+  isDisabled: boolean;
+  isLoading?: boolean;
+  icon?: React.ElementType;
+  onPress?: () => void;
+  size: "small" | "long";
+  messageColor?: string;
+  bgColor?: string;
+  pressedBgColor?: string;
+};
 
 export const BaseSolidButton = ({
   message,
@@ -29,8 +34,8 @@ export const BaseSolidButton = ({
   return (
     <Button
       minHeight={55}
-      px={size === 'small' ? "$4" : null}
-      maxWidth={size === 'long' ? "$full" : null}
+      px={size === "small" ? "$4" : null}
+      minWidth={size === "long" ? "$full" : null}
       display="flex"
       alignItems="center"
       justifyContent="center"
