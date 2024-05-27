@@ -16,10 +16,11 @@ import * as SplashScreen from "expo-splash-screen";
 import { PropsWithChildren, useEffect } from "react";
 import "react-native-reanimated";
 import Constants from "expo-constants";
-import { GluestackUIProvider} from "@gluestack-ui/themed";
+import { GluestackUIProvider } from "@gluestack-ui/themed";
 import { extendedThemeConfig } from "@/theme/gluestack-ui.config";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
+import ToastCreator from "@/components/ToastCreator";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync(); // Add a setTimeout here
@@ -48,6 +49,7 @@ function Wrapper({ children }: PropsWithChildren) {
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <GluestackUIProvider config={extendedThemeConfig}>
+        <ToastCreator />
         {children}
       </GluestackUIProvider>
     </ThemeProvider>
