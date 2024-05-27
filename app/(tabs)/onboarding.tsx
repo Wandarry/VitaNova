@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { ImageSourcePropType } from "react-native";
 import { Text, HStack, Box, ImageBackground } from "@gluestack-ui/themed";
 import { BackIconButton } from "@/components/uikit/Buttons/BackIconButton";
