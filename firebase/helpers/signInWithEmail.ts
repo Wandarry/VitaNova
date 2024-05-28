@@ -57,7 +57,7 @@ export const signInWithEmail = async (email: string, password: string) => {
 
     // show error toast
     showToast({
-      title: "Error",
+      title: "Erreur",
       description: message,
       type: "error",
     });

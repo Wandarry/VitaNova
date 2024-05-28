@@ -1,16 +1,41 @@
+import { useState } from "react";
 import { Box, Text, ScrollView } from "@gluestack-ui/themed";
 import { Mail } from "@/components/icons/mail";
-import { TextInput } from "@/components/uikit/Input/dumb/TextInput";
-import { PasswordInput } from "@/components/uikit/Input/dumb/PasswordInput";
+import TextInput from "@/components/uikit/Input/TextInput";
+import PasswordInput from "@/components/uikit/Input/PasswordInput";
 import { LinkButton } from "@/components/uikit/Buttons/LinkButton";
 import { SolidLong } from "@/components/uikit/Buttons/SolidLong";
 import { GoogleButton } from "@/components/uikit/Buttons/GoogleButton";
+import { Formik } from "formik";
+import { loginValidationSchema } from "@/utils/validationSchemas";
+import { signInWithEmail } from "@/firebase/helpers/signInWithEmail";
 
-export default function Login() {
+const initialCredential = { email: "", password: "" };
+
+export const Login = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleLogin = async ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) => {
+    setIsLoading(true);
+    try {
+      await signInWithEmail(email, password);
+    } catch (error) {
+      console.error("Login error", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <Box flex={1}>
       <Box
-        h={"30%"}
+        h={250}
         px={25}
         bgColor="$primaryLight"
         gap="$3.5"
@@ -30,22 +55,32 @@ export default function Login() {
       <ScrollView flex={1} bgColor="$white">
         <Box px={17} paddingTop={"8%"} gap={30}>
           <Box gap="$6">
-            <TextInput placeholder="Email" icon={Mail} />
-            <PasswordInput />
-            <LinkButton
-              title="Mot de passe oublié ?"
-              withIcon={false}
-              isDisabled={false}
-              onpress={() => console.log("Forgot password")}
-            />
+            <Formik
+              validationSchema={loginValidationSchema}
+              initialValues={initialCredential}
+              onSubmit={handleLogin}
+            >
+              {({ handleSubmit }) => (
+                <Box gap="$6" w={"100%"} p={0}>
+                  <TextInput name="email" placeholder="Email" icon={Mail} />
+                  <PasswordInput name="password" />
+                  <LinkButton
+                    title="Mot de passe oublié ?"
+                    withIcon={false}
+                    isDisabled={false}
+                    onpress={() => console.log("Forgot password")}
+                  />
+                  <SolidLong
+                    message="Me connecter"
+                    isLoading={isLoading}
+                    isDisabled={false}
+                    onPress={handleSubmit}
+                  />
+                </Box>
+              )}
+            </Formik>
           </Box>
           <Box gap={16} alignItems="center" w={"100%"}>
-            <SolidLong
-              message="Me connecter"
-              isLoading={false}
-              isDisabled={false}
-              onPress={() => console.log("Login")}
-            />
             <Text fontWeight="$semibold">Ou</Text>
             <GoogleButton message="Continuer avec Google" isDisabled={false} />
           </Box>
@@ -71,4 +106,4 @@ export default function Login() {
       </ScrollView>
     </Box>
   );
-}
+};
