@@ -4,6 +4,7 @@ import { Visibility } from "@/components/icons/visibility";
 import { VisibilityOff } from "@/components/icons/visibilityOff";
 
 export type PasswordInputProps = {
+  placeholder?: string;
   error?: string;
   help?: string;
   isRequired?: boolean;
@@ -12,6 +13,7 @@ export type PasswordInputProps = {
 };
 
 export const PasswordInput = ({
+  placeholder = "Mot de passe",
   error,
   help,
   isRequired,
@@ -23,7 +25,7 @@ export const PasswordInput = ({
 
   return (
     <BaseInput
-      placeholder="Mot de passe"
+      placeholder={placeholder}
       error={error}
       help={help}
       isRequired={isRequired}
