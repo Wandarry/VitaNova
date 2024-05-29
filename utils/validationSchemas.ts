@@ -1,27 +1,43 @@
 import { object, string, date, ref } from "yup";
 import {
   requiredFieldMessage,
-  mustBeAEmailAdress,
+  mustBeAEmailAddress,
   passwordRequirementMsg,
-  passwordRegex,
-  phoneNumberValidator,
 } from "@/constants/message";
+import { isValidPhoneNumber } from "libphonenumber-js";
+
+export const passwordRegex =
+  "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+
+export const phoneNumberValidator = string()
+  .required(requiredFieldMessage)
+  .test(
+    "check-phone-number",
+    "Ajoutez un numéro de téléphone valide",
+    (value) => !!(value && isValidPhoneNumber(value)),
+  );
 
 const fieldRequiredMessage = string().required(requiredFieldMessage);
 
 export const loginValidationSchema = object({
-  email: string().required(requiredFieldMessage).email(mustBeAEmailAdress),
+  email: string().required(requiredFieldMessage).email(mustBeAEmailAddress),
   password: string()
     .required(requiredFieldMessage)
     .matches(new RegExp(passwordRegex), passwordRequirementMsg),
 });
 
-export const registerValidationSchema = object({
+export const registerValidationSchemaFirstForm = object({
   firstNames: fieldRequiredMessage,
   lastName: fieldRequiredMessage,
-  birthDate: date().required(requiredFieldMessage),
-  email: fieldRequiredMessage.email(mustBeAEmailAdress),
+});
+
+export const registerValidationSchemaSecondForm = object({
   phoneNumber: phoneNumberValidator,
+  birthDate: date().required(requiredFieldMessage),
+});
+
+export const registerValidationSchemaThirdForm = object({
+  email: fieldRequiredMessage.email(mustBeAEmailAddress),
   password: fieldRequiredMessage.matches(
     new RegExp(passwordRegex),
     passwordRequirementMsg,
