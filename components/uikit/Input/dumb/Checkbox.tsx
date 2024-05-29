@@ -30,13 +30,16 @@ export const CheckBox = ({
       onChange={onChange}
     >
       <CheckboxIndicator borderColor="$primaryNormal">
-        <CheckboxIcon
-          as={CheckIcon}
-          color="$white"
-          bgColor="$primaryNormal"
-        />
+        <CheckboxIcon as={CheckIcon} color="$white" bgColor="$primaryNormal" />
       </CheckboxIndicator>
-      <CheckboxLabel color="$black" marginLeft="$3" fontSize="$md" fontWeight="$medium">{label}</CheckboxLabel>
+      <CheckboxLabel
+        color="$black"
+        marginLeft="$3"
+        fontSize="$md"
+        fontWeight="$medium"
+      >
+        {label}
+      </CheckboxLabel>
     </Checkbox>
   );
 };

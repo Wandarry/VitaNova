@@ -22,11 +22,18 @@ export const RadioButton = ({
 }: RadioButtonProps) => {
   return (
     <RadioGroup>
-      <Radio value={value} isDisabled={isDisabled} onChange={onChange} $disabled-opacity="$50">
+      <Radio
+        value={value}
+        isDisabled={isDisabled}
+        onChange={onChange}
+        $disabled-opacity="$50"
+      >
         <RadioIndicator mr="$3" borderColor="$primaryNormal">
-          <RadioIcon as={CircleIcon} color="$primaryNormal"/>
+          <RadioIcon as={CircleIcon} color="$primaryNormal" />
         </RadioIndicator>
-        <RadioLabel fontSize="$lg" color="$black">{label}</RadioLabel>
+        <RadioLabel fontSize="$lg" color="$black">
+          {label}
+        </RadioLabel>
       </Radio>
     </RadioGroup>
   );
