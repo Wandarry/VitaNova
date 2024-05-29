@@ -27,7 +27,11 @@ export default function Login() {
           Votre compte vous attend... des vies aussi !
         </Text>
       </Box>
-      <ScrollView flex={1} bgColor="$white">
+      <ScrollView
+        flex={1}
+        bgColor="$white"
+        showsVerticalScrollIndicator={false}
+      >
         <Box px={17} paddingTop={"8%"} gap={30}>
           <Box gap="$6">
             <TextInput placeholder="Email" icon={Mail} />
