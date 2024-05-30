@@ -10,7 +10,7 @@ type NewsEventsSliderProps = {
 
 export const NewsEventsSlider = ({ data }: NewsEventsSliderProps) => {
   return (
-    <Box>
+    <Box paddingLeft={18}>
       <FlatList
         showsHorizontalScrollIndicator={false}
         data={data}

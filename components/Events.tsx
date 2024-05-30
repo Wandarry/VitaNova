@@ -38,7 +38,7 @@ const data = [
 export function Events() {
   return (
     <Box gap="$4">
-      <HStack justifyContent="space-between" alignItems="center">
+      <HStack justifyContent="space-between" alignItems="center" px={18}>
         <Text fontSize={21} fontWeight="$semibold">
           Événements
         </Text>
