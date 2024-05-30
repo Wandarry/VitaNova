@@ -3,7 +3,7 @@ import { VStack, Image, Text } from "@gluestack-ui/themed";
 
 type ItemProps = {
   title: string;
-  image: string; // Use any for the image source
+  image: string;
 };
 
 export const NewsEventsItem = ({ title, image }: ItemProps) => {
