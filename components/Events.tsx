@@ -1,6 +1,6 @@
 import { Box, HStack, Text } from "@gluestack-ui/themed";
 import { LinkButton } from "./uikit/Buttons/LinkButton";
-import { NewsEventsSlider } from "./newsEventsSlider";
+import { NewsEventsSlider } from "./NewsEventsSlider";
 
 const data = [
   {
