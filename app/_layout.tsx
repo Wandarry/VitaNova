@@ -11,6 +11,7 @@ import {
   Livvic_700Bold,
   Livvic_900Black,
 } from "@expo-google-fonts/livvic";
+import { Mansalva_400Regular } from "@expo-google-fonts/mansalva";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { PropsWithChildren, useEffect } from "react";
@@ -34,6 +35,7 @@ function Wrapper({ children }: PropsWithChildren) {
     Livvic_600: Livvic_600SemiBold,
     Livvic_700: Livvic_700Bold,
     Livvic_900: Livvic_900Black,
+    Mansalva_400: Mansalva_400Regular,
   });
 
   useEffect(() => {
