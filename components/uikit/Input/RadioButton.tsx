@@ -1,23 +1,36 @@
 import { useField } from "formik";
+import { RadioGroup } from "@gluestack-ui/themed";
 import {
   RadioButton as RadioButtonDumb,
   RadioButtonProps as RadioButtonDumbProps,
 } from "./dumb/RadioButton";
 
-interface RadioButtonProps
-  extends Omit<RadioButtonDumbProps, "isChecked" | "onChange"> {
+interface RadioButtonProps {
   name: string;
-  value: string;
+  flexDirection: "row" | "column";
+  gap?: number;
+  children: React.ReactNode;
 }
 
-const RadioButton = ({ name, value, ...props }: RadioButtonProps) => {
-  const [{ value: fieldValue }, , { setValue }] = useField(name);
+const RadioButtonGroup = ({
+  name,
+  children,
+  flexDirection,
+  gap,
+}: RadioButtonProps) => {
+  const [{ value }, , { setValue }] = useField<string>(name);
 
-  const handleChange = () => {
-    setValue(value);
-  };
-
-  return <RadioButtonDumb value={value} onChange={handleChange} {...props} />;
+  return (
+    <RadioGroup
+      value={value}
+      onChange={setValue}
+      flexDirection={flexDirection}
+      gap={gap}
+      justifyContent="space-between"
+    >
+      {children}
+    </RadioGroup>
+  );
 };
 
-export default RadioButton;
+export default RadioButtonGroup;
