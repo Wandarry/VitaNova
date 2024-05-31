@@ -47,3 +47,12 @@ export const registerValidationSchemaThirdForm = object({
     "Entrez le même mot de passe que le premier champ",
   ),
 });
+
+export const personalInformationValidationSchema = object({
+  fullName: fieldRequiredMessage,
+  personalNumberIdentification: fieldRequiredMessage,
+  birthDate: date().required(requiredFieldMessage),
+  phoneNumber: phoneNumberValidator,
+  email: fieldRequiredMessage.email(mustBeAEmailAddress),
+  address: fieldRequiredMessage,
+});

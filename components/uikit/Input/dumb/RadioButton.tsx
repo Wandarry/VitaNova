@@ -10,7 +10,7 @@ import {
 export type RadioButtonProps = {
   label: string;
   value: string;
-  onChange: () => void;
+  onChange?: () => void;
   isDisabled: boolean;
 };
 
@@ -21,20 +21,18 @@ export const RadioButton = ({
   label,
 }: RadioButtonProps) => {
   return (
-    <RadioGroup>
-      <Radio
-        value={value}
-        isDisabled={isDisabled}
-        onChange={onChange}
-        $disabled-opacity="$50"
-      >
-        <RadioIndicator mr="$3" borderColor="$primaryNormal">
-          <RadioIcon as={CircleIcon} color="$primaryNormal" />
-        </RadioIndicator>
-        <RadioLabel fontSize="$lg" color="$black">
-          {label}
-        </RadioLabel>
-      </Radio>
-    </RadioGroup>
+    <Radio
+      value={value}
+      isDisabled={isDisabled}
+      onChange={onChange}
+      $disabled-opacity="$50"
+    >
+      <RadioIndicator mr="$3" borderColor="$primaryNormal">
+        <RadioIcon as={CircleIcon} color="$primaryNormal" />
+      </RadioIndicator>
+      <RadioLabel fontSize="$lg" color="$black">
+        {label}
+      </RadioLabel>
+    </Radio>
   );
 };
