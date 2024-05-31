@@ -12,7 +12,6 @@ import {
 } from "@gluestack-ui/themed";
 
 export type TextareaInputProps = {
-  label: string;
   placeholder: string;
   error?: string;
   help?: string;
@@ -23,7 +22,6 @@ export type TextareaInputProps = {
 };
 
 export const TextAreaInput = ({
-  label,
   placeholder,
   error,
   help,

@@ -56,3 +56,7 @@ export const personalInformationValidationSchema = object({
   email: fieldRequiredMessage.email(mustBeAEmailAddress),
   address: fieldRequiredMessage,
 });
+
+export const medicalInformationValidationSchema = object({
+  medicalInformation: fieldRequiredMessage,
+});
