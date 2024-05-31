@@ -7,6 +7,7 @@ export type LinkButtonProps = {
   isDisabled: boolean;
   onpress: () => void;
   withIcon: boolean;
+  iconColor?: string;
 };
 
 export const LinkButton = ({
@@ -14,6 +15,7 @@ export const LinkButton = ({
   isDisabled,
   onpress,
   withIcon = false,
+  iconColor = "$primaryNormal",
 }: LinkButtonProps) => {
   return (
     <Button
@@ -26,7 +28,7 @@ export const LinkButton = ({
       maxWidth={"50%"}
     >
       <ButtonText
-        color="$primaryNormal"
+        color={iconColor}
         fontSize="$md"
         fontFamily="Livvic_600"
         underline={withIcon ? false : true}
@@ -35,7 +37,7 @@ export const LinkButton = ({
         {title}
       </ButtonText>
       {withIcon ? (
-        <ButtonIcon as={East} h={16} w={16} color="$primaryNormal" />
+        <ButtonIcon as={East} h={16} w={16} color={iconColor} />
       ) : null}
     </Button>
   );

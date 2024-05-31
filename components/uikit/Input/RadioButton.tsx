@@ -1,9 +1,5 @@
 import { useField } from "formik";
 import { RadioGroup } from "@gluestack-ui/themed";
-import {
-  RadioButton as RadioButtonDumb,
-  RadioButtonProps as RadioButtonDumbProps,
-} from "./dumb/RadioButton";
 
 interface RadioButtonProps {
   name: string;
