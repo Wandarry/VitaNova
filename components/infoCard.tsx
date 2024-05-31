@@ -13,7 +13,9 @@ export function InfoCard() {
       alignItems="center"
     >
       <VStack w={"65%"} gap="$3">
-        <Text color="$white">Le savais-tu ?</Text>
+        <Text color="$white" fontFamily="Mansalva_400">
+          Le savais-tu ?
+        </Text>
         <Text color="$white">
           Un donateur peut aider plus de 80 personnes à retrouver le chemin de
           la santé.
