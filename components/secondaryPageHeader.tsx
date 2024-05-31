@@ -18,7 +18,7 @@ export const SecondaryPageHeader = ({
     >
       <HStack position="static" alignItems="center" gap={16} w="100%">
         <BackIconButton isDisabled={false} />
-        <Text fontSize={21} color="$primaryNormal" fontWeight="$semibold">
+        <Text fontSize={21} color="$primaryNormal" fontFamily="Livvic_600">
           {pageTitle}
         </Text>
       </HStack>
