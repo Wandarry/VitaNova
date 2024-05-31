@@ -1,7 +1,6 @@
 import {
   CircleIcon,
   Radio,
-  RadioGroup,
   RadioIcon,
   RadioIndicator,
   RadioLabel,
