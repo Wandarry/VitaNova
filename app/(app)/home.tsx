@@ -6,10 +6,7 @@ import { InfoCard } from "@/components/infoCard";
 import { PinNews } from "@/components/pinNews";
 import { NewsEventsSlider } from "@/components/newsEventsSlider";
 import { Events } from "@/components/Events";
-
-type HomeProps = {
-  userName: string;
-};
+import { useAuthContext } from "@/hooks/useAuthContext";
 
 const data = [
   {
@@ -44,7 +41,10 @@ const data = [
   },
 ];
 
-export default function Home({ userName }: HomeProps) {
+export default function Home() {
+  const { userData, user } = useAuthContext();
+  console.log(userData, user);
+
   return (
     <Box flex={1} bgColor="$white" overflow="visible">
       <Box
@@ -61,7 +61,7 @@ export default function Home({ userName }: HomeProps) {
           w={"100%"}
         >
           <Text fontSize="$2xl" color="$primaryNormal" fontWeight="$semibold">
-            Coucou {userName} !
+            Coucou {userData?.firstName} !
           </Text>
           <Icon as={Notifications} color="$primaryNormal" h={50} w={28} />
         </HStack>

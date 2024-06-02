@@ -13,14 +13,14 @@ import { router } from "expo-router";
 import { Routes } from "@/constants/route";
 
 type RegisterSteps3Props = {
-  onSubmit: (values: RegisterFormsValue) => void;
+  onSubmit: (values: typeof defaultValues) => void;
 };
 
-const initialCredential = {
+const defaultValues = {
   email: "",
   password: "",
   confirmPassword: "",
-  checkbox: false,
+  acceptTermOfUse: false,
 };
 
 export const RegisterStep3 = ({ onSubmit }: RegisterSteps3Props) => {
@@ -43,11 +43,11 @@ export const RegisterStep3 = ({ onSubmit }: RegisterSteps3Props) => {
         justifyContent="space-between"
       >
         <Formik
-          initialValues={initialCredential}
+          initialValues={defaultValues}
           onSubmit={onSubmit}
           validationSchema={registerValidationSchemaThirdForm}
         >
-          {({ handleSubmit, isSubmitting }) => (
+          {({ handleSubmit, isSubmitting, values }) => (
             <>
               <Box gap="$6">
                 <TextInput placeholder="Email" icon={Mail} name="email" />
@@ -59,14 +59,14 @@ export const RegisterStep3 = ({ onSubmit }: RegisterSteps3Props) => {
               </Box>
               <Box gap="$4" marginTop={16}>
                 <Checkbox
-                  name="checkbox"
+                  name="acceptTermOfUse"
                   label="J'accepte les Termes et Conditions d'utilisation"
                   value="TermesEtConditions"
                   isDisabled={false}
                 />
                 <SolidLong
                   message="Créer mon compte"
-                  isDisabled={false}
+                  isDisabled={values.acceptTermOfUse !== true}
                   isLoading={isSubmitting}
                   onPress={handleSubmit}
                 />

@@ -1,4 +1,4 @@
-import { object, string, date, ref } from "yup";
+import { object, string, date, ref, boolean } from "yup";
 import {
   requiredFieldMessage,
   mustBeAEmailAddress,
@@ -46,6 +46,7 @@ export const registerValidationSchemaThirdForm = object({
     [ref("password")],
     "Entrez le même mot de passe que le premier champ",
   ),
+  acceptTermOfUse: boolean(),
 });
 
 export const personalInformationValidationSchema = object({
