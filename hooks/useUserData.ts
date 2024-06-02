@@ -1,4 +1,3 @@
-// Importing necessary modules and types
 import userCollectionInstance from "@/firebase/collections/user";
 import { UserEntity } from "@/types/collections/user";
 import { User } from "firebase/auth";

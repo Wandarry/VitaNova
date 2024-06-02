@@ -7,6 +7,8 @@ import { signUpWithEmail } from "@/firebase/helpers/signUpWithEmail";
 import { useState } from "react";
 import { showToast } from "@/helpers/showToast";
 import userCollectionInstance from "@/firebase/collections/user";
+import { router } from "expo-router";
+import { Routes } from "@/constants/route";
 
 export interface RegisterFormsValue {
   firstNames?: string;
@@ -43,6 +45,7 @@ export default function Register() {
     setInputs(newsInputs);
     if (stepValues.email && stepValues.password) {
       try {
+        //to do : roll back when account is not created
         await signUpWithEmail(stepValues.email, stepValues.password);
 
         await userCollectionInstance.create({
@@ -52,6 +55,7 @@ export default function Register() {
           lastName: newsInputs.lastName!,
           phoneNumber: newsInputs.phoneNumber!,
         });
+        router.replace(Routes.HOME);
       } catch (e) {
         showToast({
           title: "Error",
