@@ -35,6 +35,7 @@ export const Login = () => {
     setIsLoading(true);
     try {
       await signInWithEmail(email, password);
+      router.replace(Routes.HOME);
     } catch (error) {
       console.error("Login error", error);
     } finally {
@@ -74,7 +75,7 @@ export const Login = () => {
               initialValues={initialCredential}
               onSubmit={handleLogin}
             >
-              {({ handleSubmit }) => (
+              {({ handleSubmit, isValid }) => (
                 <Box gap="$6" w={"100%"} p={0}>
                   <TextInput name="email" placeholder="Email" icon={Mail} />
                   <PasswordInput name="password" />
@@ -87,7 +88,7 @@ export const Login = () => {
                   <SolidLong
                     message="Me connecter"
                     isLoading={isLoading}
-                    isDisabled={false}
+                    isDisabled={!isValid}
                     onPress={handleSubmit}
                   />
                 </Box>

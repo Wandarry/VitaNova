@@ -65,5 +65,6 @@ export const signInWithEmail = async (email: string, password: string) => {
       description: message,
       type: "error",
     });
+    throw e;
   }
 };
