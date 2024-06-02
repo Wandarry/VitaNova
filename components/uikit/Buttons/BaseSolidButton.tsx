@@ -46,12 +46,7 @@ export const BaseSolidButton = ({
       $disabled-opacity="$50"
       onPress={onPress}
     >
-      <ButtonText
-        color={messageColor}
-        fontFamily="Livvic"
-        fontSize="$lg"
-        fontWeight="$semibold"
-      >
+      <ButtonText color={messageColor} fontFamily="Livvic_600" fontSize="$lg">
         {message}
       </ButtonText>
       {isLoading ? (

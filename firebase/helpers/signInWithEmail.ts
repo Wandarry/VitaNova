@@ -1,5 +1,6 @@
 import firebaseAuth from "../auth";
 import { showToast } from "@/helpers/showToast";
+import { markAsAlreadyOnboard } from "../../utils/alreadyOnboard";
 import { FirebaseError } from "firebase/app";
 import { AuthErrorCodes, signInWithEmailAndPassword } from "firebase/auth";
 
@@ -49,6 +50,9 @@ export const signInWithEmail = async (email: string, password: string) => {
       description: "Vous êtes connecté avec succès !",
       type: "success",
     });
+
+    markAsAlreadyOnboard();
+
     return userCredential;
   } catch (e) {
     const error = e as FirebaseError;

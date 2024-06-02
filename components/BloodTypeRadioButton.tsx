@@ -1,6 +1,5 @@
 import { Pressable, Text } from "@gluestack-ui/themed";
 import { useField } from "formik";
-import { useState } from "react";
 
 type BloodTypeRadioButtonProps = {
   label: string;

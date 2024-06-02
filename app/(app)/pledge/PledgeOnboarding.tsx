@@ -11,7 +11,7 @@ export default function PledgeOnboarding() {
   return (
     <Box flex={1} p="$0">
       <ImageBackground
-        source={require("../../assets/images/pledgeOnboarding.png")}
+        source={require("@/assets/images/pledgeOnboarding.png")}
         justifyContent="flex-end"
         flex={1}
         gap="$6"

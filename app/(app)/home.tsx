@@ -2,9 +2,9 @@ import { Box, HStack, Icon, ScrollView, Text } from "@gluestack-ui/themed";
 import { Notifications } from "@/components/icons/notifications";
 import { FeaturesComponent } from "@/components/FeaturesComponent";
 import { PledgeProgress } from "@/components/pledgeProgress";
-import { InfoCard } from "@/components/InfoCard";
-import { PinNews } from "@/components/PinNews";
-import { NewsEventsSlider } from "@/components/NewsEventsSlider";
+import { InfoCard } from "@/components/infoCard";
+import { PinNews } from "@/components/pinNews";
+import { NewsEventsSlider } from "@/components/newsEventsSlider";
 import { Events } from "@/components/Events";
 
 type HomeProps = {

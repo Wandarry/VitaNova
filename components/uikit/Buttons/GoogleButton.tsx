@@ -26,7 +26,6 @@ export const GoogleButton = ({
     <Button
       isDisabled={isDisabled}
       onPress={onPress}
-      // py="$4"
       minHeight={55}
       minWidth="$full"
       alignItems="center"
@@ -43,7 +42,7 @@ export const GoogleButton = ({
       ) : (
         <ButtonIcon as={Google} marginRight="$3" />
       )}
-      <ButtonText color="$primaryNormal" fontSize="$lg" fontWeight="$semibold">
+      <ButtonText color="$primaryNormal" fontSize="$lg" fontFamily="Livvic_600">
         {message}
       </ButtonText>
     </Button>

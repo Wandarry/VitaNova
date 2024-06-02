@@ -59,12 +59,7 @@ function Wrapper({ children }: PropsWithChildren) {
 }
 
 const AppContent = () => {
-  return (
-    <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="+not-found" />
-    </Stack>
-  );
+  return <Stack screenOptions={{ headerShown: false }} />;
 };
 
 // Default to rendering your app

@@ -11,7 +11,7 @@ export default function NewPassword() {
         <BackIconButton isDisabled={false} />
       </Box>
       <Box gap={14} px={8}>
-        <Text w={"75%"} color="$black" fontWeight="$semibold" fontSize={25}>
+        <Text w={"75%"} color="$black" fontFamily="Livvic_600" fontSize={25}>
           Renouvelez votre mot de passe
         </Text>
         <Text color="$black" fontSize="$lg">
