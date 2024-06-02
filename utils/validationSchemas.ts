@@ -60,3 +60,9 @@ export const personalInformationValidationSchema = object({
 export const medicalInformationValidationSchema = object({
   medicalInformation: fieldRequiredMessage,
 });
+
+export const emergencyContactValidationSchema = object({
+  emergencyContactName: fieldRequiredMessage,
+  phoneNumber: phoneNumberValidator,
+  address: fieldRequiredMessage,
+});
