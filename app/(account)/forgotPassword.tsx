@@ -8,7 +8,7 @@ import { Routes } from "@/constants/route";
 
 export default function ForgotPassword() {
   const goToLoginPage = () => {
-    router.navigate(Routes.LOGIN);
+    router.back();
   };
 
   return (

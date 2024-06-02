@@ -1,6 +1,6 @@
 import firebaseAuth from "../auth";
 import { showToast } from "@/helpers/showToast";
-import { markAsAlreadyOnboard } from "../../utils/alreadyOnboard";
+import { markAsAlreadyOnboard } from "@/utils/alreadyOnboard";
 import { FirebaseError } from "firebase/app";
 import { AuthErrorCodes, signInWithEmailAndPassword } from "firebase/auth";
 
