@@ -7,14 +7,14 @@ import { router } from "expo-router";
 import { Routes } from "@/constants/route";
 
 export default function ForgotPassword() {
-  const goToLoginPage = () => {
+  const goToPreviousPage = () => {
     router.back();
   };
 
   return (
     <Box flex={1} justifyContent="center" bgColor="$white" gap={48} px={17}>
       <Box position="absolute" top={50} left={17}>
-        <BackIconButton isDisabled={false} onPress={goToLoginPage} />
+        <BackIconButton isDisabled={false} onPress={goToPreviousPage} />
       </Box>
       <Box gap={14} px={8}>
         <Text w="75%" color="$black" fontFamily="Livvic_600" fontSize={25}>
