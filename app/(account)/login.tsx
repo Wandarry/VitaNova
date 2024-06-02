@@ -9,11 +9,21 @@ import { GoogleButton } from "@/components/uikit/Buttons/GoogleButton";
 import { Formik } from "formik";
 import { loginValidationSchema } from "@/utils/validationSchemas";
 import { signInWithEmail } from "@/firebase/helpers/signInWithEmail";
+import { router } from "expo-router";
+import { Routes } from "@/constants/route";
 
 const initialCredential = { email: "", password: "" };
 
 export const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
+
+  const goToRegisterPage = () => {
+    router.navigate(Routes.REGISTER);
+  };
+
+  const goToForgotPassword = () => {
+    router.navigate(Routes.FORGOT_PASSWORD);
+  };
 
   const handleLogin = async ({
     email,
@@ -42,9 +52,9 @@ export const Login = () => {
         paddingBottom="$2"
         justifyContent="flex-end"
       >
-        <Text w={"75%"} color="$black" fontSize={25} fontWeight="$semibold">
+        <Text w={"75%"} color="$black" fontSize={25} fontFamily="Livvic_500">
           Content de vous revoir sur{" "}
-          <Text color="$primaryNormal" fontSize={25} fontWeight="$semibold">
+          <Text color="$primaryNormal" fontSize={25} fontFamily="Livvic_600">
             VitaNova
           </Text>
         </Text>
@@ -72,7 +82,7 @@ export const Login = () => {
                     title="Mot de passe oublié ?"
                     withIcon={false}
                     isDisabled={false}
-                    onpress={() => console.log("Forgot password")}
+                    onpress={goToForgotPassword}
                   />
                   <SolidLong
                     message="Me connecter"
@@ -85,7 +95,7 @@ export const Login = () => {
             </Formik>
           </Box>
           <Box gap={16} alignItems="center" w={"100%"}>
-            <Text fontWeight="$semibold">Ou</Text>
+            <Text>Ou</Text>
             <GoogleButton message="Continuer avec Google" isDisabled={false} />
           </Box>
           <Box
@@ -96,14 +106,14 @@ export const Login = () => {
             alignItems="center"
             flexWrap="wrap"
           >
-            <Text fontSize="$md" fontWeight="$semibold" color="$primaryNormal">
+            <Text fontSize="$md" fontFamily="Livvic_600" color="$primaryNormal">
               Vous n'avez pas encore de compte ?{" "}
             </Text>
             <LinkButton
               title="Créez-en ici !"
               withIcon={false}
               isDisabled={false}
-              onpress={() => console.log("Register")}
+              onpress={goToRegisterPage}
             />
           </Box>
         </Box>
@@ -111,3 +121,5 @@ export const Login = () => {
     </Box>
   );
 };
+
+export default Login;

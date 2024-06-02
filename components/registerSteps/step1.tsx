@@ -5,8 +5,10 @@ import { SolidSmall } from "@/components/uikit/Buttons/SolidSmall";
 import TextInput from "../uikit/Input/TextInput";
 import { ScrollView, Box, Text, HStack } from "@gluestack-ui/themed";
 import { registerValidationSchemaFirstForm } from "@/utils/validationSchemas";
-import { RegisterFormsValue } from "@/app/(tabs)/register";
+import { RegisterFormsValue } from "@/app/(account)/register";
 import { Formik } from "formik";
+import { router } from "expo-router";
+import { Routes } from "@/constants/route";
 
 type RegisterStep1Props = {
   onSubmit: (values: RegisterFormsValue) => void;
@@ -15,6 +17,10 @@ type RegisterStep1Props = {
 const initialCredential = { firstNames: "", lastName: "" };
 
 export const RegisterStep1 = ({ onSubmit }: RegisterStep1Props) => {
+  const goToLoginPage = () => {
+    router.navigate(Routes.LOGIN);
+  };
+
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }} bgColor="$white">
       <Box
@@ -69,14 +75,14 @@ export const RegisterStep1 = ({ onSubmit }: RegisterStep1Props) => {
           alignItems="center"
           flexWrap="wrap"
         >
-          <Text fontSize="$md" fontWeight="$semibold" color="$primaryNormal">
+          <Text fontSize="$md" fontFamily="Livvic_600" color="$primaryNormal">
             Vous avez déjà un compte ?{" "}
           </Text>
           <LinkButton
             title="Connectez-vous ici !"
             withIcon={false}
             isDisabled={false}
-            onpress={() => console.log("Register")}
+            onpress={goToLoginPage}
           />
         </Box>
       </Box>

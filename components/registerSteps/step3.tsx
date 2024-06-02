@@ -7,8 +7,10 @@ import { SolidLong } from "../uikit/Buttons/SolidLong";
 import { ScrollView, Box, Text } from "@gluestack-ui/themed";
 import { registerValidationSchemaThirdForm } from "@/utils/validationSchemas";
 import { Formik } from "formik";
-import { RegisterFormsValue } from "@/app/(tabs)/register";
+import { RegisterFormsValue } from "@/app/(account)/register";
 import { useState } from "react";
+import { router } from "expo-router";
+import { Routes } from "@/constants/route";
 
 type RegisterSteps3Props = {
   onSubmit: (values: RegisterFormsValue) => void;
@@ -22,6 +24,10 @@ const initialCredential = {
 };
 
 export const RegisterStep3 = ({ onSubmit }: RegisterSteps3Props) => {
+  const goToLoginPage = () => {
+    router.navigate(Routes.LOGIN);
+  };
+
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = (checked: boolean) => {
@@ -77,14 +83,14 @@ export const RegisterStep3 = ({ onSubmit }: RegisterSteps3Props) => {
           alignItems="center"
           flexWrap="wrap"
         >
-          <Text fontSize="$md" fontWeight="$semibold" color="$primaryNormal">
+          <Text fontSize="$md" fontFamily="Livvic_600" color="$primaryNormal">
             Vous avez déjà un compte ?{" "}
           </Text>
           <LinkButton
             title="Connectez-vous ici !"
             withIcon={false}
             isDisabled={false}
-            onpress={() => console.log("Register")}
+            onpress={goToLoginPage}
           />
         </Box>
       </Box>

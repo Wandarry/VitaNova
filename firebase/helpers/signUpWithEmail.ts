@@ -1,5 +1,6 @@
 import firebaseAuth from "../auth";
 import { showToast } from "@/helpers/showToast";
+import { markAsAlreadyOnboard } from "../../utils/alreadyOnboard";
 import { FirebaseError } from "firebase/app";
 import { AuthErrorCodes, createUserWithEmailAndPassword } from "firebase/auth";
 
@@ -37,6 +38,8 @@ export const signUpWithEmail = async (email: string, password: string) => {
       description: "Votre compte est créé avec succès",
       type: "success",
     });
+
+    markAsAlreadyOnboard();
 
     return userCredential;
   } catch (e) {

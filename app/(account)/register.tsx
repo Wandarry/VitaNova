@@ -75,9 +75,9 @@ export default function Register() {
             />
           </Box>
         ) : null}
-        <Text w={"75%"} color="$black" fontSize={25} fontWeight="$semibold">
+        <Text w={"75%"} color="$black" fontSize={25} fontFamily="Livvic_500">
           Bienvenue sur{" "}
-          <Text color="$primaryNormal" fontSize={25} fontWeight="$semibold">
+          <Text color="$primaryNormal" fontSize={25} fontFamily="Livvic_600">
             VitaNova
           </Text>
         </Text>

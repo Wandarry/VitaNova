@@ -9,6 +9,8 @@ import {
   AnimatePresence,
 } from "@gluestack-style/animation-resolver";
 import { styled } from "@gluestack-style/react";
+import { router } from "expo-router";
+import { Routes } from "@/constants/route";
 
 type OnboardingScreen = {
   image: ImageSourcePropType;
@@ -60,6 +62,10 @@ const OnboardingAnimation = styled(AnimatedView, {
 });
 
 export default function Onboarding() {
+  const goToLoginPage = () => {
+    router.replace(Routes.LOGIN);
+  };
+
   const [currentScreen, setCurrentScreen] = useState(0);
 
   const handleNext = () => {
@@ -126,7 +132,7 @@ export default function Onboarding() {
               <SolidSmallWhite
                 message="Me connecter"
                 isDisabled={false}
-                onPress={() => console.log("Hello")}
+                onPress={goToLoginPage}
               />
             </HStack>
           </ImageBackground>
