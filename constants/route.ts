@@ -1,9 +1,9 @@
 export enum Routes {
-  INDEX = "index",
+  ONBOARDING = "onboarding",
   LOGIN = "login",
   REGISTER = "register",
   FORGOT_PASSWORD = "forgotPassword",
-  NEWP_ASSWORD = "newPassword",
+  NEW_PASSWORD = "newPassword",
   HOME = "home",
   PERSONAL_INFORMATION = "/pledge/personalInformation",
   DONATION_INFORMATION = "/pledge/donationInformation",
