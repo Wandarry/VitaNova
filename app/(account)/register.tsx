@@ -6,12 +6,13 @@ import { BackIconButton } from "@/components/uikit/Buttons/BackIconButton";
 import { signUpWithEmail } from "@/firebase/helpers/signUpWithEmail";
 import { useState } from "react";
 import { showToast } from "@/helpers/showToast";
+import userCollectionInstance from "@/firebase/collections/user";
 
 export interface RegisterFormsValue {
-  firsName?: string;
+  firstNames?: string;
   lastName?: string;
   phoneNumber?: string;
-  birthDate?: string;
+  birthDate?: Date;
   email?: string;
   password?: string;
 }
@@ -37,11 +38,27 @@ export default function Register() {
     nextForm();
   };
 
-  const handleRegister = (stepValues: RegisterFormsValue) => {
+  const handleRegister = async (stepValues: RegisterFormsValue) => {
     const newsInputs = { ...inputs, ...stepValues };
     setInputs(newsInputs);
     if (stepValues.email && stepValues.password) {
-      signUpWithEmail(stepValues.email, stepValues.password);
+      try {
+        await signUpWithEmail(stepValues.email, stepValues.password);
+
+        await userCollectionInstance.create({
+          email: newsInputs.email!,
+          birthDate: newsInputs.birthDate!,
+          firstName: newsInputs.firstNames!,
+          lastName: newsInputs.lastName!,
+          phoneNumber: newsInputs.phoneNumber!,
+        });
+      } catch (e) {
+        showToast({
+          title: "Error",
+          description: "Une erreur s'est produite",
+          type: "error",
+        });
+      }
     } else {
       showToast({
         title: "Error",
