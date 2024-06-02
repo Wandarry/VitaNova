@@ -22,6 +22,7 @@ import { extendedThemeConfig } from "@/theme/gluestack-ui.config";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 import ToastCreator from "@/components/ToastCreator";
+import AuthProvider from "@/providers/AuthProvider";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync(); // Add a setTimeout here
@@ -59,7 +60,11 @@ function Wrapper({ children }: PropsWithChildren) {
 }
 
 const AppContent = () => {
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <AuthProvider>
+      <Stack screenOptions={{ headerShown: false }} />
+    </AuthProvider>
+  );
 };
 
 // Default to rendering your app
