@@ -10,6 +10,8 @@ import { Mail } from "@/components/icons/mail";
 import { Location } from "@/components/icons/location";
 import { SolidLong } from "@/components/uikit/Buttons/SolidLong";
 import { InfoPopOver } from "@/components/InfoPopOver";
+import { router } from "expo-router";
+import { Routes } from "@/constants/route";
 
 const defaultValues = {
   emergencyContactName: "",
@@ -21,6 +23,9 @@ export default function EmergencyContact() {
   const [isSumitting, setIsSumitting] = useState(false);
   const onSubmit = () => {
     setIsSumitting(true);
+    setTimeout(() => {
+      router.replace(Routes.MEDICAL_INFORMATION);
+    }, 3000); // 3000 millisecondes = 3 secondes
   };
 
   return (
