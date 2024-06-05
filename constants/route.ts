@@ -7,7 +7,9 @@ export enum Routes {
   HOME = "home",
   PERSONAL_INFORMATION = "/pledge/personalInformation",
   DONATION_INFORMATION = "/pledge/donationInformation",
+  EMERGENCY_CONTACT = "/pledge/emergencyContact",
   MEDICAL_INFORMATION = "/pledge/medicalInformation",
-  PLEDGE_ONBOARDING = "/pledge/pledgeOnboarding",
+  PLEDGE_ONBOARDING = "/pledge/PledgeOnboarding",
   REVOKE_PLEDGING = "/pledge/revokePledging",
+  PLEDGE_CATEGORIES_SUMMARY = "/pledge/pledgeCategoriesSummary",
 }
