@@ -4,16 +4,35 @@ import { Box, HStack, Text, ScrollView } from "@gluestack-ui/themed";
 import { BloodTypeRadioButton } from "@/components/BloodTypeRadioButton";
 import TextareaInput from "@/components/uikit/Input/TextareaInput";
 import { PopOverForMap } from "@/components/PopOverForMap";
-import { LinkButton } from "@/components/uikit/Buttons/LinkButton";
+
 import { Formik } from "formik";
 import { useState } from "react";
 import { SolidLong } from "@/components/uikit/Buttons/SolidLong";
 import { InfoPopOver } from "@/components/InfoPopOver";
+import { router } from "expo-router";
+import { Routes } from "@/constants/route";
+import { showToast } from "@/helpers/showToast";
+import { LinkButton } from "@/components/uikit/Buttons/LinkButton";
 
 export default function MedicalInformation() {
   const [isLoading, setIsLoading] = useState(false);
+
+  const [isOpen, setIsOpen] = useState(false);
+
   const onSubmit = () => {
     setIsLoading(true);
+    setTimeout(() => {
+      showToast({
+        title: "Les vies sauvés vous remercient",
+        description: "Votre engagement est enregistré avec succès",
+        type: "success",
+      });
+      router.replace(Routes.PLEDGE_CATEGORIES_SUMMARY);
+    }, 3000); // 3000 millisecondes = 3 secondes
+  };
+
+  const handleMapPopUp = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
@@ -100,7 +119,18 @@ export default function MedicalInformation() {
                       />
                     </HStack>
                   </Box>
-                  <PopOverForMap title="Vous pouvez prendre rendez-vous dans un hôpital proche de vous pour une analyse. Vos résultats vous seront envoyés sur l'appli !" />
+                  <LinkButton
+                    title="Vous ne connaissez pas votre groupe sanguin ?"
+                    isDisabled={false}
+                    withIcon={false}
+                    onpress={handleMapPopUp}
+                  />
+                  {isOpen ? (
+                    <PopOverForMap
+                      title="Vous pouvez prendre rendez-vous dans un hôpital proche de vous pour une analyse. Vos résultats vous seront envoyés sur l'appli !"
+                      onpress={handleMapPopUp}
+                    />
+                  ) : null}
                 </Box>
                 <Box
                   gap={22}
