@@ -8,6 +8,8 @@ import RadioButtonGroup from "@/components/uikit/Input/RadioButton";
 import { Formik } from "formik";
 import { useState } from "react";
 import { SolidLong } from "@/components/uikit/Buttons/SolidLong";
+import { router } from "expo-router";
+import { Routes } from "@/constants/route";
 
 const defaultValues = {
   transplantation: "",
@@ -18,6 +20,9 @@ export default function DonationInformation() {
   const [isSumitting, setIsSumitting] = useState(false);
   const onSubmit = () => {
     setIsSumitting(true);
+    setTimeout(() => {
+      router.replace(Routes.EMERGENCY_CONTACT);
+    }, 3000); // 3000 millisecondes = 3 secondes
   };
 
   return (

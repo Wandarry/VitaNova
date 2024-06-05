@@ -2,8 +2,18 @@ import React, { useState } from "react";
 import { Text, HStack, Box, ImageBackground } from "@gluestack-ui/themed";
 import { BackIconButton } from "@/components/uikit/Buttons/BackIconButton";
 import { SolidSmallWhite } from "@/components/uikit/Buttons/SolidSmallWhite";
+import { router } from "expo-router";
+import { Routes } from "@/constants/route";
 
 export default function PledgeOnboarding() {
+  const goToPreviousPage = () => {
+    router.back();
+  };
+
+  const goToCategoriesSummary = () => {
+    router.replace(Routes.PLEDGE_CATEGORIES_SUMMARY);
+  };
+
   const title =
     "Vous êtes sur le point de faire le premier pas vers le don d'organes";
   const description =
@@ -24,6 +34,7 @@ export default function PledgeOnboarding() {
             bgColor="$primaryNormal"
             iconColor="$white"
             pressedBgColor="$primaryNormalHover"
+            onPress={goToPreviousPage}
           />
         </Box>
         <Text
@@ -47,7 +58,7 @@ export default function PledgeOnboarding() {
           <SolidSmallWhite
             message="Prêt à m'engager"
             isDisabled={false}
-            onPress={() => console.log("Hello")}
+            onPress={goToCategoriesSummary}
           />
         </HStack>
       </ImageBackground>
