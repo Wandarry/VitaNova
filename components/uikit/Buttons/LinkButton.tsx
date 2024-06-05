@@ -25,7 +25,6 @@ export const LinkButton = ({
       $disabled-opacity="$50"
       $active-opacity="$60"
       justifyContent="flex-start"
-      maxWidth={"50%"}
     >
       <ButtonText
         color={iconColor}

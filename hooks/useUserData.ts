@@ -27,7 +27,7 @@ export const useUserData = (user: User | null) => {
           }
           // If the component is still mounted, update the userData state
           if (!ignore) {
-            setUserData(response[0]);
+            setUserData(response);
           }
         })
         .catch(() => {

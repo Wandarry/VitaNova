@@ -4,12 +4,22 @@ import { Approval } from "./icons/approval";
 import { Chat } from "./icons/chat";
 import { Faq } from "./icons/faq";
 import { News } from "./icons/news";
+import { router } from "expo-router";
+import { Routes } from "@/constants/route";
 
 export function FeaturesComponent() {
+  const gotToPledgeOnboarding = () => {
+    router.navigate(Routes.PLEDGE_ONBOARDING);
+  };
+
   return (
     <HStack w={"100%"} justifyContent="space-between">
       <Box gap="$2" alignItems="center">
-        <FeatureButton isDisabled={false} icon={Approval} />
+        <FeatureButton
+          isDisabled={false}
+          icon={Approval}
+          onPress={gotToPledgeOnboarding}
+        />
         <Text color="$primaryNormal" fontSize={15} fontWeight="$semibold">
           M'engager
         </Text>
