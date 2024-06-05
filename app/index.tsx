@@ -2,6 +2,7 @@ import SplashScreen from "@/components/SplashScreen";
 import { Routes } from "@/constants/route";
 import { useAuthContext } from "@/hooks/useAuthContext";
 import { isAlreadyOnboard as checkIfUserIsAlreadyOnboard } from "@/utils/alreadyOnboard";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
 
@@ -39,6 +40,7 @@ const AppEntry = () => {
       }
     }
   }, [user, isNotLoggedIn, isAlreadyOnboard]);
+
   return <SplashScreen />;
 };
 
