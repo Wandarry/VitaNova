@@ -5,12 +5,21 @@ import { RadioButton } from "@/components/uikit/Input/dumb/RadioButton";
 import { SolidLong } from "@/components/uikit/Buttons/SolidLong";
 import { Formik } from "formik";
 import { useState } from "react";
+import { showToast } from "@/helpers/showToast";
+import { router } from "expo-router";
+import { Routes } from "@/constants/route";
 
 export default function RevokePledging() {
   const [isSumitting, setIsSumitting] = useState(false);
 
   const onSubmit = () => {
     setIsSumitting(true);
+    showToast({
+      title: "Succès",
+      description: "Engagement révoqué avec succès",
+      type: "success",
+    });
+    router.replace(Routes.PLEDGE_CATEGORIES_SUMMARY);
   };
 
   return (

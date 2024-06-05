@@ -12,6 +12,8 @@ import { Location } from "@/components/icons/location";
 import { personalInformationValidationSchema } from "@/utils/validationSchemas";
 import { Formik } from "formik";
 import { useState } from "react";
+import { router } from "expo-router";
+import { Routes } from "@/constants/route";
 
 const defaultValues = {
   fullName: "",
@@ -26,6 +28,9 @@ export default function PersonalInformation() {
   const [isSumitting, setIsSumitting] = useState(false);
   const onSubmit = () => {
     setIsSumitting(true);
+    setTimeout(() => {
+      router.replace(Routes.DONATION_INFORMATION);
+    }, 3000); // 3000 millisecondes = 3 secondes
   };
 
   return (

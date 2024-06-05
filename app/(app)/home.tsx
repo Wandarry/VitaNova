@@ -42,8 +42,7 @@ const data = [
 ];
 
 export default function Home() {
-  const { userData, user } = useAuthContext();
-  console.log(userData, user);
+  const { userData } = useAuthContext();
 
   return (
     <Box flex={1} bgColor="$white" overflow="visible">
