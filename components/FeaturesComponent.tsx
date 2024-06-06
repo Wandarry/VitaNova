@@ -13,32 +13,32 @@ export function FeaturesComponent() {
   };
 
   return (
-    <HStack w={"100%"} justifyContent="space-between">
+    <HStack w="100%" justifyContent="space-between">
       <Box gap="$2" alignItems="center">
         <FeatureButton
           isDisabled={false}
           icon={Approval}
           onPress={gotToPledgeOnboarding}
         />
-        <Text color="$primaryNormal" fontSize={15} fontWeight="$semibold">
+        <Text color="$primaryNormal" fontSize={15} fontFamily="Livvic_600">
           M'engager
         </Text>
       </Box>
       <Box gap="$2" alignItems="center">
         <FeatureButton isDisabled={false} icon={Chat} />
-        <Text color="$primaryNormal" fontSize={15} fontWeight="$semibold">
+        <Text color="$primaryNormal" fontSize={15} fontFamily="Livvic_600">
           Chat
         </Text>
       </Box>
       <Box gap="$2" alignItems="center">
         <FeatureButton isDisabled={false} icon={Faq} />
-        <Text color="$primaryNormal" fontSize={15} fontWeight="$semibold">
+        <Text color="$primaryNormal" fontSize={15} fontFamily="Livvic_600">
           FAQs
         </Text>
       </Box>
       <Box gap="$2" alignItems="center">
         <FeatureButton isDisabled={false} icon={News} />
-        <Text color="$primaryNormal" fontSize={15} fontWeight="$semibold">
+        <Text color="$primaryNormal" fontSize={15} fontFamily="Livvic_600">
           Actus
         </Text>
       </Box>
