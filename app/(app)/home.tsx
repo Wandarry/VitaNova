@@ -57,9 +57,9 @@ export default function Home() {
           position="static"
           alignItems="center"
           justifyContent="space-between"
-          w={"100%"}
+          w="100%"
         >
-          <Text fontSize="$2xl" color="$primaryNormal" fontWeight="$semibold">
+          <Text fontSize="$2xl" color="$primaryNormal" fontFamily="Livvic_500">
             Coucou {userData?.firstName} !
           </Text>
           <Icon as={Notifications} color="$primaryNormal" h={50} w={28} />
@@ -67,8 +67,8 @@ export default function Home() {
       </Box>
       <Box flex={1} bgColor="$textLight0">
         <ScrollView flex={1} showsVerticalScrollIndicator={false}>
-          <Box flex={1} w={"100%"} gap="$6">
-            <Box w={"100%"} gap="$6" px={18}>
+          <Box flex={1} w="100%" gap="$6">
+            <Box w="100%" gap="$6" px={18}>
               <InfoCard />
               <FeaturesComponent />
               <PledgeProgress />

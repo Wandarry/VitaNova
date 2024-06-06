@@ -17,7 +17,7 @@ export function PinNews({
   return (
     <Box gap="$4" px={18}>
       <HStack justifyContent="space-between" alignItems="center">
-        <Text fontSize={21} fontWeight="$semibold">
+        <Text fontSize={21} fontFamily="Livvic_600">
           Actus
         </Text>
         <LinkButton
@@ -35,7 +35,7 @@ export function PinNews({
       >
         <LinearGradient colors={["rgba(23,55,109,0.5)", "#081326"]}>
           <Box gap={12} px={18} py={20}>
-            <Text color="$white" fontSize={21} fontWeight="$semibold">
+            <Text color="$white" fontSize={21} fontFamily="Livvic_600">
               {newsTitle}
             </Text>
             <Text color="$white" fontSize={15}>
