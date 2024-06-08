@@ -28,6 +28,7 @@ const custom = {
       primaryDarkHover: "#0e2141",
       primaryDarkActive: "#0a1931",
       primaryDarker: "#081326",
+      shadow: "#17376D40",
       black: "#3D3D3D",
       red: "#D0342C",
     },
