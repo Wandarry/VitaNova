@@ -12,6 +12,10 @@ export function FeaturesComponent() {
     router.navigate(Routes.PLEDGE_ONBOARDING);
   };
 
+  const gotToNews = () => {
+    router.navigate(Routes.NEWS);
+  };
+
   return (
     <HStack w="100%" justifyContent="space-between">
       <Box gap="$2" alignItems="center">
@@ -37,7 +41,7 @@ export function FeaturesComponent() {
         </Text>
       </Box>
       <Box gap="$2" alignItems="center">
-        <FeatureButton isDisabled={false} icon={News} />
+        <FeatureButton isDisabled={false} icon={News} onPress={gotToNews} />
         <Text color="$primaryNormal" fontSize={15} fontFamily="Livvic_600">
           Actus
         </Text>
