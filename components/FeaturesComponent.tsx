@@ -33,6 +33,10 @@ export function FeaturesComponent() {
     router.navigate(Routes.NEWS);
   };
 
+  const gotToNews = () => {
+    router.navigate(Routes.NEWS);
+  };
+
   return (
     <HStack w="100%" justifyContent="space-between">
       <Box gap="$2" alignItems="center">
