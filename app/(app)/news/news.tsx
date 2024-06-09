@@ -1,6 +1,7 @@
 import { Box, HStack, Icon, Text } from "@gluestack-ui/themed";
 import { ArticlesFeed } from "@/components/ArticlesFeed";
 import { Search } from "@/components/icons/search";
+import { Routes } from "@/constants/route";
 
 const data = [
   {
@@ -11,7 +12,8 @@ const data = [
     description:
       "En moyenne, 300 000 personnes attendent un organe qui leur sauvera la vie, tandis que des milliers d'autres attendent un don de tissus qui pourrait tout changer.",
     tag: "Recherches",
-    time: "15 min",
+    createdAt: "15 min",
+    route: Routes.ARTICLE_DETAIL,
   },
   {
     id: "2",
@@ -21,7 +23,8 @@ const data = [
     description:
       "En moyenne, 300 000 personnes attendent un organe qui leur sauvera la vie, tandis que des milliers d'autres attendent un don de tissus qui pourrait tout changer.",
     tag: "Découvertes",
-    time: "30 min",
+    createdAt: "30 min",
+    route: Routes.ARTICLE_DETAIL,
   },
   {
     id: "3",
@@ -31,7 +34,8 @@ const data = [
     description:
       "En moyenne, 300 000 personnes attendent un organe qui leur sauvera la vie, tandis que des milliers d'autres attendent un don de tissus qui pourrait tout changer.",
     tag: "Témoignages",
-    time: "2 heures",
+    createdAt: "2 heures",
+    route: Routes.ARTICLE_DETAIL,
   },
   {
     id: "4",
@@ -41,7 +45,8 @@ const data = [
     description:
       "En moyenne, 300 000 personnes attendent un organe qui leur sauvera la vie, tandis que des milliers d'autres attendent un don de tissus qui pourrait tout changer.",
     tag: "Témoignages",
-    time: "3 jours",
+    createdAt: "3 jours",
+    route: Routes.ARTICLE_DETAIL,
   },
 ];
 
@@ -62,7 +67,7 @@ export default function News() {
           <Icon as={Search} h={28} w={28} color="$primaryNormal" />
         </HStack>
       </Box>
-      <Box flex={1} px={18} bgColor="$textLight0">
+      <Box flex={1} bgColor="$textLight0">
         <ArticlesFeed data={data} />
       </Box>
     </Box>

@@ -1,4 +1,11 @@
-import { Box, HStack, Text, Image, Icon } from "@gluestack-ui/themed";
+import {
+  Box,
+  HStack,
+  Text,
+  Image,
+  Icon,
+  Pressable,
+} from "@gluestack-ui/themed";
 import { NewsTag } from "./uikit/NewsTag";
 import { Favorite } from "./icons/favorite";
 import { Share } from "./icons/share";
@@ -11,6 +18,7 @@ type NewsCardProps = {
   author: string;
   title: string;
   description: string;
+  onpress?: () => void;
 };
 
 export const NewsCard = ({
@@ -20,19 +28,21 @@ export const NewsCard = ({
   image,
   description,
   author,
+  onpress,
 }: NewsCardProps) => {
   return (
-    <Box
+    <Pressable
       borderRadius={8}
       py={24}
       my={24}
-      mx={3}
+      mx={18}
       gap={16}
       shadowColor="$shadow"
       shadowOpacity="$10"
       elevation={20}
       shadowRadius={33}
       bgColor="$white"
+      onPress={onpress}
     >
       <HStack px={18} gap={12} alignItems="center">
         <NewsTag style="card" title={tag} />
@@ -70,6 +80,6 @@ export const NewsCard = ({
           </Text>
         </HStack>
       </HStack>
-    </Box>
+    </Pressable>
   );
 };

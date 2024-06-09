@@ -29,11 +29,7 @@ export function FeaturesComponent() {
     router.navigate(Routes.FAQ);
   };
 
-  const gotToNews = () => {
-    router.navigate(Routes.NEWS);
-  };
-
-  const gotToNews = () => {
+  const goToNews = () => {
     router.navigate(Routes.NEWS);
   };
 
@@ -62,7 +58,7 @@ export function FeaturesComponent() {
         </Text>
       </Box>
       <Box gap="$2" alignItems="center">
-        <FeatureButton isDisabled={false} icon={News} onPress={gotToNews} />
+        <FeatureButton isDisabled={false} icon={News} onPress={goToNews} />
         <Text color="$primaryNormal" fontSize={15} fontFamily="Livvic_600">
           Actus
         </Text>
