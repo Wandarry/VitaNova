@@ -1,49 +1,32 @@
 import { Box, HStack, Icon, Text } from "@gluestack-ui/themed";
-import { ArticlesFeed } from "@/components/ArticlesFeed";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import ArticlesList from "@/components/ArticlesList";
+import EventsList from "@/components/EventsList";
 import { Search } from "@/components/icons/search";
+import { StyleSheet } from "react-native";
 
-const data = [
-  {
-    id: "1",
-    image: require("@/assets/images/news1.png"),
-    title: "Pourquoi le don d'organes est-il cruciale de nos jours ?",
-    author: "admin",
-    description:
-      "En moyenne, 300 000 personnes attendent un organe qui leur sauvera la vie, tandis que des milliers d'autres attendent un don de tissus qui pourrait tout changer.",
-    tag: "Recherches",
-    time: "15 min",
-  },
-  {
-    id: "2",
-    image: require("@/assets/images/news2.png"),
-    title: "Pourquoi le don d'organes est-il cruciale de nos jours ?",
-    author: "Docteur IBIKOUNLE",
-    description:
-      "En moyenne, 300 000 personnes attendent un organe qui leur sauvera la vie, tandis que des milliers d'autres attendent un don de tissus qui pourrait tout changer.",
-    tag: "Découvertes",
-    time: "30 min",
-  },
-  {
-    id: "3",
-    image: require("@/assets/images/news3.png"),
-    title: "Pourquoi le don d'organes est-il cruciale de nos jours ?",
-    author: "Docteur ACCLASATO",
-    description:
-      "En moyenne, 300 000 personnes attendent un organe qui leur sauvera la vie, tandis que des milliers d'autres attendent un don de tissus qui pourrait tout changer.",
-    tag: "Témoignages",
-    time: "2 heures",
-  },
-  {
-    id: "4",
-    image: require("@/assets/images/news1.png"),
-    title: "Pourquoi le don d'organes est-il cruciale de nos jours ?",
-    author: "Docteur Ronel",
-    description:
-      "En moyenne, 300 000 personnes attendent un organe qui leur sauvera la vie, tandis que des milliers d'autres attendent un don de tissus qui pourrait tout changer.",
-    tag: "Témoignages",
-    time: "3 jours",
-  },
-];
+const Tab = createMaterialTopTabNavigator();
+
+function TabsNavigation() {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        tabBarLabelStyle: {
+          fontSize: 15,
+          textTransform: "none",
+          fontFamily: "Livvic_600",
+        },
+        tabBarIndicatorStyle: styles.indicator,
+        tabBarStyle: styles.tabBar,
+        tabBarActiveTintColor: "#17376D",
+        tabBarInactiveTintColor: "#17376D",
+      }}
+    >
+      <Tab.Screen name="Articles" component={ArticlesList} />
+      <Tab.Screen name="Événements" component={EventsList} />
+    </Tab.Navigator>
+  );
+}
 
 export default function News() {
   return (
@@ -57,14 +40,27 @@ export default function News() {
       >
         <HStack justifyContent="space-between" alignItems="center">
           <Text color="$primaryNormal" fontFamily="Livvic_600" fontSize={30}>
-            News
+            Actus
           </Text>
           <Icon as={Search} h={28} w={28} color="$primaryNormal" />
         </HStack>
       </Box>
-      <Box flex={1} px={18} bgColor="$textLight0">
-        <ArticlesFeed data={data} />
-      </Box>
+      <TabsNavigation />
     </Box>
   );
 }
+
+const styles = StyleSheet.create({
+  tabBar: {
+    backgroundColor: "white",
+    elevation: 0,
+    shadowOpacity: 0,
+    borderBottomWidth: 1,
+    borderBottomColor: "#E0E0E0",
+  },
+  indicator: {
+    backgroundColor: "#17376D",
+    height: 3,
+    borderRadius: 2,
+  },
+});
