@@ -8,8 +8,11 @@ import { router } from "expo-router";
 import { Routes } from "@/constants/route";
 
 export function FeaturesComponent() {
-  const gotToPledgeOnboarding = () => {
+  const goToPledgeOnboarding = () => {
     router.navigate(Routes.PLEDGE_ONBOARDING);
+  };
+  const goToFaq = () => {
+    router.navigate(Routes.FAQ);
   };
 
   return (
@@ -18,7 +21,7 @@ export function FeaturesComponent() {
         <FeatureButton
           isDisabled={false}
           icon={Approval}
-          onPress={gotToPledgeOnboarding}
+          onPress={goToPledgeOnboarding}
         />
         <Text color="$primaryNormal" fontSize={15} fontFamily="Livvic_600">
           M'engager
@@ -31,7 +34,7 @@ export function FeaturesComponent() {
         </Text>
       </Box>
       <Box gap="$2" alignItems="center">
-        <FeatureButton isDisabled={false} icon={Faq} />
+        <FeatureButton isDisabled={false} icon={Faq} onPress={goToFaq} />
         <Text color="$primaryNormal" fontSize={15} fontFamily="Livvic_600">
           FAQs
         </Text>
