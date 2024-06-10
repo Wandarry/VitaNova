@@ -1,5 +1,4 @@
 import { StepIndicator } from "@/components/StepIndicator";
-import { SecondaryPageHeader } from "@/components/secondaryPageHeader";
 import { LinkButton } from "@/components/uikit/Buttons/LinkButton";
 import { Routes } from "@/constants/route";
 import { Box, ScrollView, Text } from "@gluestack-ui/themed";
@@ -17,15 +16,11 @@ export default function PledgeCategoriesSummary() {
         justifyContent="flex-end"
         paddingBottom="$2"
         bgColor="$white"
+        px={18}
       >
-        <SecondaryPageHeader pageTitle="Engagement" />
-        {/* <Text
-          color="$primaryNormal"
-          fontFamily="Livvic_600"
-          fontSize={30}
-        >
-            Engagement
-        </Text> */}
+        <Text color="$primaryNormal" fontFamily="Livvic_600" fontSize={30}>
+          Engagement
+        </Text>
       </Box>
       <ScrollView
         flex={1}

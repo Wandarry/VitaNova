@@ -91,6 +91,7 @@ export const StepIndicator = () => {
               padding={style.padding}
               gap={style.gap}
               borderRadius={style.borderRadius}
+              flexShrink={1}
             >
               <Text fontFamily="Livvic_600" fontSize={22} color={style.color}>
                 {step.title}
