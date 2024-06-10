@@ -10,7 +10,9 @@ export const NewsEventsItem = ({ title, image }: ItemProps) => {
   return (
     <VStack gap={8} w={180} marginRight={18}>
       <Image source={image} h={180} w={180} borderRadius={8} alt="VitaNova" />
-      <Text fontFamily="Livvic_600">{title}</Text>
+      <Text fontFamily="Livvic_600" color="$primaryNormal">
+        {title}
+      </Text>
     </VStack>
   );
 };
