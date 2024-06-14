@@ -1,4 +1,4 @@
-import { Box, HStack, ScrollView, Text } from "@gluestack-ui/themed";
+import { Box, ScrollView, Text } from "@gluestack-ui/themed";
 import { SecondaryPageHeader } from "@/components/secondaryPageHeader";
 import TextInput from "@/components/uikit/Input/TextInput";
 import DateInput from "@/components/uikit/Input/DateInput";
@@ -11,9 +11,22 @@ import { Mail } from "@/components/icons/mail";
 import { Location } from "@/components/icons/location";
 import { personalInformationValidationSchema } from "@/utils/validationSchemas";
 import { Formik } from "formik";
-import { useState } from "react";
 import { router } from "expo-router";
 import { Routes } from "@/constants/route";
+import pledgeCollectionInstance from "@/firebase/collections/PledgeCollection";
+import { Gender, PledgePersonalInfo } from "@/types/collections/pledge";
+import { useAuthContext } from "@/hooks/useAuthContext";
+import { showToast } from "@/helpers/showToast";
+
+type PersonalInfoFormValues = {
+  fullName: string;
+  personalNumberIdentification: string;
+  birthDate: Date;
+  phoneNumber: string;
+  email: string;
+  address: string;
+  gender: Gender;
+};
 
 const defaultValues = {
   fullName: "",
@@ -21,16 +34,33 @@ const defaultValues = {
   phoneNumber: "",
   email: "",
   address: "",
-  gender: "",
-};
+  gender: "" as Gender,
+} as PersonalInfoFormValues;
 
 export default function PersonalInformation() {
-  const [isSumitting, setIsSumitting] = useState(false);
-  const onSubmit = () => {
-    setIsSumitting(true);
-    setTimeout(() => {
+  const contextValue = useAuthContext();
+
+  const onSubmit = async ({
+    personalNumberIdentification,
+    ...rest
+  }: PersonalInfoFormValues) => {
+    if (contextValue.user?.email) {
+      const document: PledgePersonalInfo = {
+        ...rest,
+        npiNumber: personalNumberIdentification,
+      };
+      await pledgeCollectionInstance.savePersonalInfo(
+        document,
+        contextValue.user?.email,
+      );
       router.replace(Routes.DONATION_INFORMATION);
-    }, 3000); // 3000 millisecondes = 3 secondes
+    } else {
+      showToast({
+        title: "Oups...réessayez",
+        description: "Une erreur s'est produite",
+        type: "error",
+      });
+    }
   };
 
   return (
@@ -47,12 +77,12 @@ export default function PersonalInformation() {
             Nous collectons ici les renseignements essentiels pour vous
             identifier.
           </Text>
-          <Formik
+          <Formik<PersonalInfoFormValues>
             initialValues={defaultValues}
             onSubmit={onSubmit}
             validationSchema={personalInformationValidationSchema}
           >
-            {({ handleSubmit }) => (
+            {({ handleSubmit, isSubmitting }) => (
               <>
                 <Box>
                   <Box
@@ -168,7 +198,7 @@ export default function PersonalInformation() {
                 <SolidLong
                   message="Valider cette étape"
                   isDisabled={false}
-                  isLoading={isSumitting}
+                  isLoading={isSubmitting}
                   onPress={handleSubmit}
                 />
               </>

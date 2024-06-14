@@ -59,7 +59,7 @@ export const personalInformationValidationSchema = object({
 });
 
 export const medicalInformationValidationSchema = object({
-  medicalInformation: fieldRequiredMessage,
+  medicalHistory: fieldRequiredMessage,
 });
 
 export const emergencyContactValidationSchema = object({

@@ -1,28 +1,50 @@
-import { Box, HStack, Icon, ScrollView, Text } from "@gluestack-ui/themed";
+import { Box, HStack, ScrollView, Text } from "@gluestack-ui/themed";
 import { SecondaryPageHeader } from "@/components/secondaryPageHeader";
-import { Info } from "@/components/icons/info";
 import { InfoPopOver } from "@/components/InfoPopOver";
 import { DoNotTouchOrgan } from "@/components/uikit/doNotTouchOrgan";
 import { RadioButton } from "@/components/uikit/Input/dumb/RadioButton";
 import RadioButtonGroup from "@/components/uikit/Input/RadioButton";
 import { Formik } from "formik";
-import { useState } from "react";
 import { SolidLong } from "@/components/uikit/Buttons/SolidLong";
 import { router } from "expo-router";
 import { Routes } from "@/constants/route";
+import pledgeCollectionInstance from "@/firebase/collections/PledgeCollection";
+import { PledgeDonationInfo } from "@/types/collections/pledge";
+import { useAuthContext } from "@/hooks/useAuthContext";
+import { showToast } from "@/helpers/showToast";
+import { DonationType } from "@/types/collections/pledge";
+import { OrganToDonate } from "@/types/collections/pledge";
 
-const defaultValues = {
-  transplantation: "",
-  organs: "",
+export type DonationInformationFormValues = {
+  donationType: DonationType;
+  organToDonate: OrganToDonate;
+  excludedOrgans: string[];
 };
 
+const defaultValues = {
+  donationType: "" as DonationType,
+  organToDonate: "" as OrganToDonate,
+  excludedOrgans: [],
+} as DonationInformationFormValues;
+
 export default function DonationInformation() {
-  const [isSumitting, setIsSumitting] = useState(false);
-  const onSubmit = () => {
-    setIsSumitting(true);
-    setTimeout(() => {
+  const contextValue = useAuthContext();
+
+  const onSubmit = async ({ ...rest }: DonationInformationFormValues) => {
+    if (contextValue.user?.email) {
+      const document: PledgeDonationInfo = { ...rest };
+      await pledgeCollectionInstance.saveDonationInfo(
+        document,
+        contextValue.user?.email,
+      );
       router.replace(Routes.EMERGENCY_CONTACT);
-    }, 3000); // 3000 millisecondes = 3 secondes
+    } else {
+      showToast({
+        title: "Oups...réessayez",
+        description: "Une erreur s'est produite",
+        type: "error",
+      });
+    }
   };
 
   return (
@@ -40,8 +62,11 @@ export default function DonationInformation() {
             souhaitez donner et d'indiquer votre consentement pour d'éventuelles
             recherches.
           </Text>
-          <Formik initialValues={defaultValues} onSubmit={onSubmit}>
-            {({ handleSubmit, values }) => (
+          <Formik<DonationInformationFormValues>
+            initialValues={defaultValues}
+            onSubmit={onSubmit}
+          >
+            {({ handleSubmit, values, isSubmitting }) => (
               <>
                 <Box gap={26}>
                   <HStack
@@ -67,7 +92,7 @@ export default function DonationInformation() {
                     <RadioButtonGroup
                       gap={22}
                       flexDirection="column"
-                      name="transplantation"
+                      name="donationType"
                     >
                       <RadioButton
                         isDisabled={false}
@@ -103,7 +128,7 @@ export default function DonationInformation() {
                   </HStack>
                   <Box gap={22} px="$4">
                     <RadioButtonGroup
-                      name="organs"
+                      name="organToDonate"
                       flexDirection="column"
                       gap={22}
                     >
@@ -119,13 +144,13 @@ export default function DonationInformation() {
                       />
                     </RadioButtonGroup>
                     <DoNotTouchOrgan
-                      isDisabled={values.organs === "All organs"}
+                      isDisabled={values.organToDonate === "All organs"}
                     />
                   </Box>
                   <SolidLong
                     message="Valider cette étape"
                     isDisabled={false}
-                    isLoading={isSumitting}
+                    isLoading={isSubmitting}
                     onPress={handleSubmit}
                   />
                 </Box>

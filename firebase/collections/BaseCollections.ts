@@ -13,7 +13,6 @@ import {
   DocumentData,
 } from "firebase/firestore";
 import firestoreDb from "../firestore";
-import { BaseEntity } from "@/types/collections/base";
 
 export class BaseCollection<T extends DocumentData> {
   private name: string;
@@ -25,13 +24,14 @@ export class BaseCollection<T extends DocumentData> {
   create(document: T) {
     const ref = collection(firestoreDb, this.name) as CollectionReference<T, T>;
     const documentWithTimestampFields = { ...document, createdAt: new Date() };
-    return addDoc<T, T>(ref, document);
+    return addDoc<T, T>(ref, documentWithTimestampFields);
   }
 
   createOrUpdate(document: WithFieldValue<T>, id: string) {
     const ref = doc(firestoreDb, this.name, id) as DocumentReference<T, T>;
     const documentWithTimestampFields = { ...document, updatedAt: new Date() };
-    return setDoc<T, T>(ref, document);
+    const option = { merge: true };
+    return setDoc<T, T>(ref, documentWithTimestampFields, option);
   }
 
   protected async getFirstBy(fieldName: string, value: string) {

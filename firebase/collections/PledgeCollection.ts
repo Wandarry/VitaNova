@@ -11,14 +11,14 @@ import {
 let instance: PledgeCollection;
 
 class PledgeCollection extends BaseCollection<Pledge> {
-  idPrefix = "user/pledge";
+  idPrefix = "user-pledge";
 
   constructor() {
     if (instance) {
       throw new Error("You can only create one instance!");
     }
 
-    super("users");
+    super("pledges");
     instance = this;
   }
 
@@ -28,10 +28,10 @@ class PledgeCollection extends BaseCollection<Pledge> {
 
   savePersonalInfo(document: PledgePersonalInfo, email: string) {
     const recordId = this.computeId(email);
-    this.createOrUpdate(
+    return this.createOrUpdate(
       {
         personalInfo: document,
-        state: PledgeStatus.Active,
+        status: PledgeStatus.Active,
       },
       recordId,
     );
@@ -39,10 +39,10 @@ class PledgeCollection extends BaseCollection<Pledge> {
 
   saveDonationInfo(document: PledgeDonationInfo, email: string) {
     const recordId = this.computeId(email);
-    this.createOrUpdate(
+    return this.createOrUpdate(
       {
         pledgeDonationInfo: document,
-        state: PledgeStatus.Active,
+        status: PledgeStatus.Active,
       },
       recordId,
     );
@@ -53,10 +53,10 @@ class PledgeCollection extends BaseCollection<Pledge> {
     email: string,
   ) {
     const recordId = this.computeId(email);
-    this.createOrUpdate(
+    return this.createOrUpdate(
       {
         emergencyContactInfo: document,
-        state: PledgeStatus.Active,
+        status: PledgeStatus.Active,
       },
       recordId,
     );
@@ -64,10 +64,10 @@ class PledgeCollection extends BaseCollection<Pledge> {
 
   saveMedicalInfo(document: PledgeMedicalInfo, email: string) {
     const recordId = this.computeId(email);
-    this.createOrUpdate(
+    return this.createOrUpdate(
       {
         medicalInfo: document,
-        state: PledgeStatus.Active,
+        status: PledgeStatus.Active,
       },
       recordId,
     );

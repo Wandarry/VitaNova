@@ -4,7 +4,6 @@ import { Box, HStack, Text, ScrollView } from "@gluestack-ui/themed";
 import { BloodTypeRadioButton } from "@/components/BloodTypeRadioButton";
 import TextareaInput from "@/components/uikit/Input/TextareaInput";
 import { PopOverForMap } from "@/components/PopOverForMap";
-
 import { Formik } from "formik";
 import { useState } from "react";
 import { SolidLong } from "@/components/uikit/Buttons/SolidLong";
@@ -13,22 +12,45 @@ import { router } from "expo-router";
 import { Routes } from "@/constants/route";
 import { showToast } from "@/helpers/showToast";
 import { LinkButton } from "@/components/uikit/Buttons/LinkButton";
+import { BloodGroup } from "@/types/collections/pledge";
+import { PledgeMedicalInfo } from "@/types/collections/pledge";
+import { useAuthContext } from "@/hooks/useAuthContext";
+import pledgeCollectionInstance from "@/firebase/collections/PledgeCollection";
+
+type MedicalInformationFormValues = {
+  bloodGroup: BloodGroup;
+  medicalHistory: string;
+};
+
+const defaultValues = {
+  bloodGroup: "" as BloodGroup,
+  medicalHistory: "",
+} as MedicalInformationFormValues;
 
 export default function MedicalInformation() {
-  const [isLoading, setIsLoading] = useState(false);
-
+  const contextValue = useAuthContext();
   const [isOpen, setIsOpen] = useState(false);
 
-  const onSubmit = () => {
-    setIsLoading(true);
-    setTimeout(() => {
+  const onSubmit = async ({ ...rest }: MedicalInformationFormValues) => {
+    if (contextValue.user?.email) {
+      const document: PledgeMedicalInfo = { ...rest };
+      await pledgeCollectionInstance.saveMedicalInfo(
+        document,
+        contextValue.user?.email,
+      );
       showToast({
-        title: "Les vies sauvés vous remercient",
+        title: "Les vies sauvées vous remercient",
         description: "Votre engagement est enregistré avec succès",
         type: "success",
       });
       router.replace(Routes.PLEDGE_CATEGORIES_SUMMARY);
-    }, 3000); // 3000 millisecondes = 3 secondes
+    } else {
+      showToast({
+        title: "Oups...réessayez",
+        description: "Une erreur s'est produite",
+        type: "error",
+      });
+    }
   };
 
   const handleMapPopUp = () => {
@@ -57,11 +79,11 @@ export default function MedicalInformation() {
             />
           </HStack>
           <Formik
-            initialValues={{ bloodType: "", medicalInformation: "" }}
+            initialValues={defaultValues}
             onSubmit={onSubmit}
             validationSchema={medicalInformationValidationSchema}
           >
-            {({ handleSubmit }) => (
+            {({ handleSubmit, isSubmitting }) => (
               <>
                 <Box gap={26}>
                   <Box
@@ -77,44 +99,44 @@ export default function MedicalInformation() {
                     <HStack justifyContent="space-between">
                       <BloodTypeRadioButton
                         label="A+"
-                        name="bloodType"
+                        name="bloodGroup"
                         value="A+"
                       />
                       <BloodTypeRadioButton
                         label="B+"
-                        name="bloodType"
+                        name="bloodGroup"
                         value="B+"
                       />
                       <BloodTypeRadioButton
                         label="AB+"
-                        name="bloodType"
+                        name="bloodGroup"
                         value="AB+"
                       />
                       <BloodTypeRadioButton
                         label="O+"
-                        name="bloodType"
+                        name="bloodGroup"
                         value="O+"
                       />
                     </HStack>
                     <HStack justifyContent="space-between">
                       <BloodTypeRadioButton
                         label="A-"
-                        name="bloodType"
+                        name="bloodGroup"
                         value="A-"
                       />
                       <BloodTypeRadioButton
                         label="B-"
-                        name="bloodType"
+                        name="bloodGroup"
                         value="B-"
                       />
                       <BloodTypeRadioButton
                         label="AB-"
-                        name="bloodType"
+                        name="bloodGroup"
                         value="AB-"
                       />
                       <BloodTypeRadioButton
                         label="O-"
-                        name="bloodType"
+                        name="bloodGroup"
                         value="O-"
                       />
                     </HStack>
@@ -145,7 +167,7 @@ export default function MedicalInformation() {
                     allergies )
                   </Text>
                   <TextareaInput
-                    name="medicalInformation"
+                    name="medicalHistory"
                     placeholder="Écrivez..."
                     isDisabled={false}
                     isRequired={true}
@@ -154,7 +176,7 @@ export default function MedicalInformation() {
                 <SolidLong
                   message="Valider cette étape"
                   isDisabled={false}
-                  isLoading={isLoading}
+                  isLoading={isSubmitting}
                   onPress={handleSubmit}
                 />
               </>

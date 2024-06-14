@@ -1,16 +1,19 @@
-enum Gender {
-  Male = "Male",
-  Female = "Female",
-  Other = "Other",
+export enum Gender {
+  Male = "male",
+  Female = "female",
 }
 
-enum DonationType {
-  Organ = "Organ",
-  Tissue = "Tissue",
-  Blood = "Blood",
+export enum DonationType {
+  Tranplantation = "Transplantation only",
+  TranplantationOrReasearch = "Transplantation or Research",
 }
 
-enum BloodGroup {
+export enum OrganToDonate {
+  AllOrgans = "All organs",
+  OrgansWithException = "Organs exception",
+}
+
+export enum BloodGroup {
   APositive = "A+",
   ANegative = "A-",
   BPositive = "B+",
@@ -27,7 +30,6 @@ export enum PledgeStatus {
 }
 
 export interface PledgePersonalInfo {
-  id: string;
   fullName: string;
   npiNumber: string;
   birthDate: Date;
@@ -35,33 +37,28 @@ export interface PledgePersonalInfo {
   email: string;
   gender: Gender;
   address: string;
-  pledgeID?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
 
 export interface PledgeDonationInfo {
-  id: string;
   donationType: DonationType;
+  organToDonate: OrganToDonate;
   excludedOrgans: string[];
-  pledgeID?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
 
 export interface PledgeEmergencyContactInfo {
-  id: string;
-  contactFullName: string;
+  emergencyContactFullName: string;
   phoneNumber: string;
   address: string;
-  email: string;
-  pledgeID?: string;
+  email?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
 
 export interface PledgeMedicalInfo {
-  id: string;
   bloodGroup: BloodGroup;
   medicalHistory?: string;
   createdAt?: Date;
@@ -69,7 +66,7 @@ export interface PledgeMedicalInfo {
 }
 
 export interface Pledge {
-  state: PledgeStatus;
+  status: PledgeStatus;
   medicalInfo?: PledgeMedicalInfo;
   emergencyContactInfo?: PledgeEmergencyContactInfo;
   pledgeDonationInfo?: PledgeDonationInfo;

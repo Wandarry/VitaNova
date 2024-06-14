@@ -70,7 +70,7 @@ export const StepIndicator = () => {
             key={step.id}
             flexDirection="row"
             alignItems="flex-start"
-            marginBottom={16}
+            marginBottom={10}
           >
             <Box alignItems="center" marginRight={16}>
               <Icon
@@ -79,7 +79,7 @@ export const StepIndicator = () => {
               />
               {index < steps.length - 1 && (
                 <Box
-                  h={step.active ? 180 : 70}
+                  h={step.active ? 180 : 100}
                   w={2}
                   bgColor="$primaryNormal"
                   my={8}
@@ -92,6 +92,7 @@ export const StepIndicator = () => {
               gap={style.gap}
               borderRadius={style.borderRadius}
               flexShrink={1}
+              w="100%"
             >
               <Text fontFamily="Livvic_600" fontSize={22} color={style.color}>
                 {step.title}
