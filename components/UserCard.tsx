@@ -1,14 +1,17 @@
 import { useAuthContext } from "@/hooks/useAuthContext";
 import {
   Box,
-  Image,
   Text,
   Progress,
   ProgressFilledTrack,
+  Avatar,
+  AvatarFallbackText,
 } from "@gluestack-ui/themed";
 
 export const UserCard = () => {
   const { userData } = useAuthContext();
+  const fullName = `${userData?.firstName || ""} ${userData?.lastName || ""}`;
+
   return (
     <Box
       borderRadius={18}
@@ -22,13 +25,12 @@ export const UserCard = () => {
       w="100%"
       marginTop={12}
     >
-      <Image
-        source={require("@/assets/images/news2.png")}
-        alt="user avatar"
-        h={80}
-        w={80}
-        borderRadius={9999}
-      />
+      <Avatar bgColor="$indigo600" h={80} w={80} borderRadius="$full">
+        <AvatarFallbackText fontFamily="Livvic_700" fontSize={20}>
+          {fullName}
+        </AvatarFallbackText>
+      </Avatar>
+
       <Text fontSize={25} fontFamily="Livvic_600" color="$white">
         {userData?.firstName} {userData?.lastName}
       </Text>
