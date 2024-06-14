@@ -3,7 +3,6 @@ import { SecondaryPageHeader } from "@/components/secondaryPageHeader";
 import { Formik } from "formik";
 import { emergencyContactValidationSchema } from "@/utils/validationSchemas";
 import TextInput from "@/components/uikit/Input/TextInput";
-import { useState } from "react";
 import { User } from "@/components/icons/user";
 import { Call } from "@/components/icons/call";
 import { Mail } from "@/components/icons/mail";
@@ -12,20 +11,49 @@ import { SolidLong } from "@/components/uikit/Buttons/SolidLong";
 import { InfoPopOver } from "@/components/InfoPopOver";
 import { router } from "expo-router";
 import { Routes } from "@/constants/route";
+import pledgeCollectionInstance from "@/firebase/collections/PledgeCollection";
+import { PledgeEmergencyContactInfo } from "@/types/collections/pledge";
+import { useAuthContext } from "@/hooks/useAuthContext";
+import { showToast } from "@/helpers/showToast";
+
+type EmergencyContactInfoFormValues = {
+  emergencyContactName: string;
+  phoneNumber: string;
+  email?: string;
+  address: string;
+};
 
 const defaultValues = {
   emergencyContactName: "",
   phoneNumber: "",
   address: "",
-};
+  email: "",
+} as EmergencyContactInfoFormValues;
 
 export default function EmergencyContact() {
-  const [isSumitting, setIsSumitting] = useState(false);
-  const onSubmit = () => {
-    setIsSumitting(true);
-    setTimeout(() => {
+  const contextValue = useAuthContext();
+
+  const onSubmit = async ({
+    emergencyContactName,
+    ...rest
+  }: EmergencyContactInfoFormValues) => {
+    if (contextValue.user?.email) {
+      const document: PledgeEmergencyContactInfo = {
+        ...rest,
+        emergencyContactFullName: emergencyContactName,
+      };
+      await pledgeCollectionInstance.saveEmergencyContactInfo(
+        document,
+        contextValue.user?.email,
+      );
       router.replace(Routes.MEDICAL_INFORMATION);
-    }, 3000); // 3000 millisecondes = 3 secondes
+    } else {
+      showToast({
+        title: "Oups...réessayez",
+        description: "Une erreur s'est produite",
+        type: "error",
+      });
+    }
   };
 
   return (
@@ -50,12 +78,12 @@ export default function EmergencyContact() {
               onpress={() => console.log("Beat me")}
             />
           </HStack>
-          <Formik
+          <Formik<EmergencyContactInfoFormValues>
             initialValues={defaultValues}
             onSubmit={onSubmit}
             validationSchema={emergencyContactValidationSchema}
           >
-            {({ handleSubmit }) => (
+            {({ handleSubmit, isSubmitting }) => (
               <>
                 <Box>
                   <Box
@@ -123,7 +151,7 @@ export default function EmergencyContact() {
                 <SolidLong
                   message="Valider cette étape"
                   isDisabled={false}
-                  isLoading={isSumitting}
+                  isLoading={isSubmitting}
                   onPress={handleSubmit}
                 />
               </>

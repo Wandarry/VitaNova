@@ -23,6 +23,7 @@ const RadioButtonGroup = ({
       flexDirection={flexDirection}
       gap={gap}
       justifyContent="space-between"
+      w="95%"
     >
       {children}
     </RadioGroup>
