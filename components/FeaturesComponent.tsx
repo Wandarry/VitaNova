@@ -6,10 +6,24 @@ import { Faq } from "./icons/faq";
 import { News } from "./icons/news";
 import { router } from "expo-router";
 import { Routes } from "@/constants/route";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function FeaturesComponent() {
-  const goToPledgeOnboarding = () => {
-    router.navigate(Routes.PLEDGE_ONBOARDING);
+  const goToPledgeProcess = async () => {
+    try {
+      const hasSeenOnboarding = await AsyncStorage.getItem(
+        "hasSeenPledgeOnboarding",
+      );
+
+      if (hasSeenOnboarding) {
+        router.navigate(Routes.PLEDGE_CATEGORIES_SUMMARY);
+      } else {
+        await AsyncStorage.setItem("hasSeenPledgeOnboarding", "true");
+        router.navigate(Routes.PLEDGE_ONBOARDING);
+      }
+    } catch (error) {
+      router.navigate(Routes.PLEDGE_ONBOARDING);
+    }
   };
   const goToFaq = () => {
     router.navigate(Routes.FAQ);
@@ -21,7 +35,7 @@ export function FeaturesComponent() {
         <FeatureButton
           isDisabled={false}
           icon={Approval}
-          onPress={goToPledgeOnboarding}
+          onPress={goToPledgeProcess}
         />
         <Text color="$primaryNormal" fontSize={15} fontFamily="Livvic_600">
           M'engager
