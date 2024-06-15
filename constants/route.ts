@@ -13,4 +13,5 @@ export enum Routes {
   REVOKE_PLEDGING = "/pledge/revokePledging",
   PLEDGE_CATEGORIES_SUMMARY = "/pledge/pledgeCategoriesSummary",
   FAQ = "/userProfile/faq",
+  USER_PROFILE = "/userProfile/userProfile",
 }
