@@ -49,7 +49,7 @@ export function Events() {
           onpress={() => console.log("Link button pressed")}
         />
       </HStack>
-      <NewsEventsSlider data={data} />
+      <NewsEventsSlider />
     </Box>
   );
 }

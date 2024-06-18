@@ -2,7 +2,7 @@ import { BaseEntity } from "./base";
 
 export interface ArticleContentEntity extends BaseEntity {
   articleId: string;
-  content: Text;
+  content: string;
 }
 
 export interface ArticleEntity extends BaseEntity {

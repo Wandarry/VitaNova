@@ -8,39 +8,6 @@ import { NewsEventsSlider } from "@/components/newsEventsSlider";
 import { Events } from "@/components/Events";
 import { useAuthContext } from "@/hooks/useAuthContext";
 
-const data = [
-  {
-    id: "1",
-    image: require("@/assets/images/news1.png"),
-    title: "Pourquoi le don d'organes est-il cruciale de nos jours ?",
-  },
-  {
-    id: "2",
-    image: require("@/assets/images/news2.png"),
-    title: "Pourquoi le don d'organes est-il cruciale de nos jours ?",
-  },
-  {
-    id: "3",
-    image: require("@/assets/images/news3.png"),
-    title: "Pourquoi le don d'organes est-il cruciale de nos jours ?",
-  },
-  {
-    id: "4",
-    image: require("@/assets/images/news1.png"),
-    title: "Pourquoi le don d'organes est-il cruciale de nos jours ?",
-  },
-  {
-    id: "5",
-    image: require("@/assets/images/news2.png"),
-    title: "Pourquoi le don d'organes est-il cruciale de nos jours ?",
-  },
-  {
-    id: "6",
-    image: require("@/assets/images/news3.png"),
-    title: "Pourquoi le don d'organes est-il cruciale de nos jours ?",
-  },
-];
-
 export default function Home() {
   const { userData } = useAuthContext();
 
@@ -78,7 +45,7 @@ export default function Home() {
               newsTitle="Pourquoi devrais-je faire un don d'organes ?"
               newsDescription="En moyenne, 300 000 personnes attendent un organe qui leur sauvera la vie, tandis que des milliers d'autres attendent un don de tissus qui pourrait tout changer."
             />
-            <NewsEventsSlider data={data} />
+            <NewsEventsSlider />
             <Events />
           </Box>
         </ScrollView>

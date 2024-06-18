@@ -50,13 +50,13 @@ export class BaseCollection<T extends DocumentData> {
   async getAllMostRecent(limitSize: number) {
     const ref = collection(firestoreDb, this.name) as CollectionReference<T, T>;
 
-    const orderByQuery = orderBy("createdAt", "desc");
+    const orderByQuery = orderBy("publicationDate", "desc");
     const limitQuery = limit(limitSize);
 
     const q = query<T, T>(ref, orderByQuery, limitQuery);
     const querySnapshot = await getDocs<T, T>(q);
 
-    return querySnapshot.docs.map((doc) => doc.data());
+    return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
   }
   async getAllBy(fieldName: string, value: string) {
     const ref = collection(firestoreDb, this.name) as CollectionReference<T, T>;
@@ -64,7 +64,7 @@ export class BaseCollection<T extends DocumentData> {
     const q = query<T, T>(ref, where(fieldName, "==", value), limit(1));
     const querySnapshot = await getDocs<T, T>(q);
 
-    return querySnapshot.docs.map((doc) => doc.data());
+    return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
   }
 
   async incrementFieldValue(id: string, fieldName: keyof T, value: number) {
