@@ -14,4 +14,6 @@ export enum Routes {
   PLEDGE_CATEGORIES_SUMMARY = "/pledge/pledgeCategoriesSummary",
   FAQ = "/userProfile/faq",
   USER_PROFILE = "/userProfile/userProfile",
+  NEWS = "/news/news",
+  ARTICLE_DETAIL = "/news/articleDetail",
 }

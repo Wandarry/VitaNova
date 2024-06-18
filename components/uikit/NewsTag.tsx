@@ -20,13 +20,14 @@ export const NewsTag = ({ title, style }: NewsTagProps) => {
     <Box
       bgColor={selectedStyle.bgColor}
       borderColor="$primaryNormal"
+      borderWidth={1}
       px="$2"
       py="$1.5"
       borderRadius="$lg"
       alignItems="center"
       justifyContent="center"
     >
-      <Text color={selectedStyle.color} fontWeight="$semibold" fontSize="$md">
+      <Text color={selectedStyle.color} fontFamily="Livvic_600" fontSize="$md">
         {title}
       </Text>
     </Box>
