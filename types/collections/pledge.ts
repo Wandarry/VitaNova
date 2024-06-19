@@ -71,4 +71,5 @@ export interface Pledge {
   emergencyContactInfo?: PledgeEmergencyContactInfo;
   pledgeDonationInfo?: PledgeDonationInfo;
   personalInfo?: PledgePersonalInfo;
+  progress: number;
 }

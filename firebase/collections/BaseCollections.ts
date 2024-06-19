@@ -15,6 +15,7 @@ import {
   updateDoc,
   increment,
   UpdateData,
+  getDoc,
 } from "firebase/firestore";
 import firestoreDb from "../firestore";
 
@@ -45,6 +46,12 @@ export class BaseCollection<T extends DocumentData> {
     const querySnapshot = await getDocs<T, T>(q);
 
     return querySnapshot.docs[0]?.data() ?? null;
+  }
+
+  async getById(id: string) {
+    const ref = doc(firestoreDb, this.name, id) as DocumentReference<T, T>;
+    const docSnap = await getDoc<T, T>(ref);
+    return docSnap.exists() ? docSnap.data() : null;
   }
 
   async getAllMostRecent(limitSize: number) {

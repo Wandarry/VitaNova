@@ -9,6 +9,7 @@ import {
 } from "@/types/collections/pledge";
 
 let instance: PledgeCollection;
+let progress = 0;
 
 class PledgeCollection extends BaseCollection<Pledge> {
   idPrefix = "user-pledge";
@@ -26,48 +27,91 @@ class PledgeCollection extends BaseCollection<Pledge> {
     return `${this.idPrefix}${email}`;
   }
 
-  savePersonalInfo(document: PledgePersonalInfo, email: string) {
+  private computeProgress(pledge: Partial<Pledge>): number {
+    let progress = 0;
+    if (pledge.personalInfo) progress += 25;
+    if (pledge.pledgeDonationInfo) progress += 25;
+    if (pledge.emergencyContactInfo) progress += 25;
+    if (pledge.medicalInfo) progress += 25;
+    return progress;
+  }
+
+  async getById(email: string): Promise<Pledge | null> {
     const recordId = this.computeId(email);
+    const pledge = await super.getById(recordId);
+    return pledge;
+  }
+
+  async savePersonalInfo(document: PledgePersonalInfo, email: string) {
+    const recordId = this.computeId(email);
+    const existingPledge = (await this.getById(recordId)) || {};
+    const progress = this.computeProgress({
+      ...existingPledge,
+      personalInfo: document,
+    });
     return this.createOrUpdate(
       {
+        ...existingPledge,
         personalInfo: document,
         status: PledgeStatus.Active,
+        progress,
       },
       recordId,
     );
   }
 
-  saveDonationInfo(document: PledgeDonationInfo, email: string) {
+  async saveDonationInfo(document: PledgeDonationInfo, email: string) {
     const recordId = this.computeId(email);
+    const existingPledge = (await this.getById(recordId)) || {};
+    const progress = this.computeProgress({
+      ...existingPledge,
+      pledgeDonationInfo: document,
+    });
     return this.createOrUpdate(
       {
+        ...existingPledge,
         pledgeDonationInfo: document,
         status: PledgeStatus.Active,
+        progress,
       },
       recordId,
     );
   }
 
-  saveEmergencyContactInfo(
+  async saveEmergencyContactInfo(
     document: PledgeEmergencyContactInfo,
     email: string,
   ) {
     const recordId = this.computeId(email);
+    const existingPledge = (await this.getById(recordId)) || {};
+    const progress = this.computeProgress({
+      ...existingPledge,
+      emergencyContactInfo: document,
+    });
     return this.createOrUpdate(
       {
+        ...existingPledge,
         emergencyContactInfo: document,
         status: PledgeStatus.Active,
+        progress,
       },
       recordId,
     );
   }
 
-  saveMedicalInfo(document: PledgeMedicalInfo, email: string) {
+  async saveMedicalInfo(document: PledgeMedicalInfo, email: string) {
     const recordId = this.computeId(email);
+    const existingPledge = (await this.getById(recordId)) || {};
+    const progress = this.computeProgress({
+      ...existingPledge,
+      medicalInfo: document,
+    });
     return this.createOrUpdate(
       {
+        ...existingPledge,
         medicalInfo: document,
         status: PledgeStatus.Active,
+        progress,
       },
       recordId,
     );
