@@ -16,4 +16,5 @@ export enum Routes {
   USER_PROFILE = "/userProfile/userProfile",
   NEWS = "/news/news",
   ARTICLE_DETAIL = "/news/articleDetail",
+  EVENT_DETAIL = "news/eventDetail",
 }
