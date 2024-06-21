@@ -1,6 +1,6 @@
-import { Box, HStack, Icon, Text } from "@gluestack-ui/themed";
-import { Search } from "@/components/icons/search";
+import { Box, HStack, Text } from "@gluestack-ui/themed";
 import { NewsTopTab } from "@/components/NewsTopTab";
+import { BottomSheet } from "@/components/BottomSheet";
 
 export default function News() {
   return (
@@ -15,7 +15,7 @@ export default function News() {
           <Text color="$primaryNormal" fontFamily="Livvic_600" fontSize={30}>
             Actus
           </Text>
-          <Icon as={Search} h={28} w={28} color="$primaryNormal" />
+          <BottomSheet />
         </HStack>
       </Box>
       <NewsTopTab />
