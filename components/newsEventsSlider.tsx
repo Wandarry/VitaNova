@@ -1,9 +1,8 @@
 import React from "react";
-import { FlatList } from "react-native";
+import { ActivityIndicator, FlatList } from "react-native";
 import { Box, Text } from "@gluestack-ui/themed";
 import { NewsEventsItem } from "./newsEventsItem";
 import { useMostRecentArticle } from "@/hooks/useMostRecentArticle";
-import LottieView from "lottie-react-native";
 import { LinkButton } from "./uikit/Buttons/LinkButton";
 
 const RecentArticle = () => {
@@ -12,11 +11,7 @@ const RecentArticle = () => {
   if (isLoading) {
     return (
       <Box h={100} justifyContent="center" alignItems="center">
-        <LottieView
-          source={require("@/assets/animation/loading.json")}
-          autoPlay={true}
-          loop={true}
-        />
+        <ActivityIndicator size="large" color="#17376D" />
       </Box>
     );
   }
