@@ -74,4 +74,17 @@ export class BaseCollection<T extends DocumentData> {
       [fieldName]: increment(value),
     } as UpdateData<T>);
   }
+
+  searchByTitle = async (searchText: string) => {
+    if (!searchText) return [];
+    const ref = collection(firestoreDb, this.name) as CollectionReference<T, T>;
+    const q = query(
+      ref,
+      where("title", ">=", searchText),
+      where("title", "<=", searchText + "\uf8ff"),
+    );
+    const querySnapshot = await getDocs(q);
+
+    return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+  };
 }
