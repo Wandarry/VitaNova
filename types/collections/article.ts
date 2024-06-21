@@ -1,4 +1,5 @@
 import { BaseEntity } from "./base";
+import { Timestamp } from "firebase/firestore";
 
 export interface ArticleContentEntity extends BaseEntity {
   articleId: string;
@@ -13,5 +14,5 @@ export interface ArticleEntity extends BaseEntity {
   image: string;
   likes: number;
   shareCount: number;
-  publicationDate: Date;
+  publicationDate: Timestamp;
 }

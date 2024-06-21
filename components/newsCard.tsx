@@ -12,8 +12,8 @@ import { Share } from "./icons/share";
 import { Comment } from "./icons/comment";
 
 type NewsCardProps = {
-  tag: string;
-  createdAt: string;
+  label: string;
+  publicationDate: string;
   image: string;
   author: string;
   title: string;
@@ -22,8 +22,8 @@ type NewsCardProps = {
 };
 
 export const NewsCard = ({
-  tag,
-  createdAt,
+  label,
+  publicationDate,
   title,
   image,
   description,
@@ -45,10 +45,10 @@ export const NewsCard = ({
       onPress={onpress}
     >
       <HStack px={18} gap={12} alignItems="center">
-        <NewsTag style="card" title={tag} />
-        <Text fontSize={11}>Il y a {createdAt}</Text>
+        <NewsTag style="card" title={label} />
+        <Text fontSize={11}>Il y a {publicationDate}</Text>
       </HStack>
-      <Image source={image} h={200} w="100%" />
+      <Image source={image} h={200} w="100%" alt="VitaNova" />
       <Box px={18} gap={16}>
         <Text fontFamily="Livvic_600" fontSize={15}>
           Par {author}
