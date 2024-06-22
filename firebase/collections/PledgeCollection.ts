@@ -9,7 +9,6 @@ import {
 } from "@/types/collections/pledge";
 
 let instance: PledgeCollection;
-let progress = 0;
 
 class PledgeCollection extends BaseCollection<Pledge> {
   idPrefix = "user-pledge";
@@ -27,6 +26,12 @@ class PledgeCollection extends BaseCollection<Pledge> {
     return `${this.idPrefix}${email}`;
   }
 
+  async getUserPledge(email: string): Promise<Pledge | null> {
+    const recordId = this.computeId(email);
+    const pledge = await super.getByID(recordId);
+    return pledge;
+  }
+
   private computeProgress(pledge: Partial<Pledge>): number {
     let progress = 0;
     if (pledge.personalInfo) progress += 25;
@@ -36,15 +41,9 @@ class PledgeCollection extends BaseCollection<Pledge> {
     return progress;
   }
 
-  async getById(email: string): Promise<Pledge | null> {
-    const recordId = this.computeId(email);
-    const pledge = await super.getById(recordId);
-    return pledge;
-  }
-
   async savePersonalInfo(document: PledgePersonalInfo, email: string) {
     const recordId = this.computeId(email);
-    const existingPledge = (await this.getById(recordId)) || {};
+    const existingPledge = (await this.getByID(recordId)) || {};
     const progress = this.computeProgress({
       ...existingPledge,
       personalInfo: document,
@@ -62,7 +61,7 @@ class PledgeCollection extends BaseCollection<Pledge> {
 
   async saveDonationInfo(document: PledgeDonationInfo, email: string) {
     const recordId = this.computeId(email);
-    const existingPledge = (await this.getById(recordId)) || {};
+    const existingPledge = (await this.getByID(recordId)) || {};
     const progress = this.computeProgress({
       ...existingPledge,
       pledgeDonationInfo: document,
@@ -83,7 +82,7 @@ class PledgeCollection extends BaseCollection<Pledge> {
     email: string,
   ) {
     const recordId = this.computeId(email);
-    const existingPledge = (await this.getById(recordId)) || {};
+    const existingPledge = (await this.getByID(recordId)) || {};
     const progress = this.computeProgress({
       ...existingPledge,
       emergencyContactInfo: document,
@@ -101,7 +100,7 @@ class PledgeCollection extends BaseCollection<Pledge> {
 
   async saveMedicalInfo(document: PledgeMedicalInfo, email: string) {
     const recordId = this.computeId(email);
-    const existingPledge = (await this.getById(recordId)) || {};
+    const existingPledge = (await this.getByID(recordId)) || {};
     const progress = this.computeProgress({
       ...existingPledge,
       medicalInfo: document,

@@ -1,16 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAuthContext } from "@/hooks/useAuthContext";
 import pledgeCollectionInstance from "@/firebase/collections/PledgeCollection";
+import { useFocusEffect } from "expo-router";
 
 export const usePledgeProgress = () => {
   const { user } = useAuthContext();
   const [progress, setProgress] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  useFocusEffect(() => {
     const fetchProgress = async () => {
       if (user?.email) {
-        const pledge = await pledgeCollectionInstance.getById(user.email);
+        const pledge = await pledgeCollectionInstance.getUserPledge(user.email);
         if (pledge) {
           setProgress(pledge.progress || 0);
         }
@@ -19,7 +20,7 @@ export const usePledgeProgress = () => {
     };
 
     fetchProgress();
-  }, [user]);
+  });
 
   return { progress, loading };
 };

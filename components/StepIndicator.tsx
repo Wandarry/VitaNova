@@ -9,58 +9,61 @@ import {
 import { LinkButton } from "./uikit/Buttons/LinkButton";
 import { router } from "expo-router";
 import { Routes } from "@/constants/route";
-
-const steps = [
-  {
-    id: 1,
-    title: "Informations personnelles",
-    description: "Informations nécessaires sur le potentiel donneur",
-    active: true,
-    route: Routes.PERSONAL_INFORMATION,
-  },
-  {
-    id: 2,
-    title: "Informations sur le don",
-    description: "Spécification des organes et tissus à donner",
-    active: false,
-    route: Routes.DONATION_INFORMATION,
-  },
-  {
-    id: 3,
-    title: "Contact d'urgence",
-    description: "Personne à contacter en cas d'urgence",
-    active: false,
-    route: Routes.EMERGENCY_CONTACT,
-  },
-  {
-    id: 4,
-    title: "Informations médicales",
-    description: "Antécédents médicaux pertinents pour l'éligibilité",
-    active: false,
-    route: Routes.MEDICAL_INFORMATION,
-  },
-];
-
-const activeBox = {
-  bgColor: "$primaryNormal",
-  padding: 16,
-  gap: 12,
-  minHeight: "30%",
-  justifyContent: "center",
-  color: "$white",
-  borderRadius: 18,
-};
-
-const inactiveBox = {
-  bgColor: "$textLight0",
-  padding: 16,
-  gap: 10,
-  justifyContent: "center",
-  color: "$primaryNormal",
-  borderRadius: 0,
-};
+import { usePledgeProgress } from "@/hooks/usePledgeProgress";
 
 export const StepIndicator = () => {
+  const { progress } = usePledgeProgress();
+
+  const steps = [
+    {
+      id: 1,
+      title: "Informations personnelles",
+      description: "Informations nécessaires sur le potentiel donneur",
+      active: progress === 0 || progress === 100,
+      route: Routes.PERSONAL_INFORMATION,
+    },
+    {
+      id: 2,
+      title: "Informations sur le don",
+      description: "Spécification des organes et tissus à donner",
+      active: progress === 25 || progress === 100,
+      route: Routes.DONATION_INFORMATION,
+    },
+    {
+      id: 3,
+      title: "Contact d'urgence",
+      description: "Personne à contacter en cas d'urgence",
+      active: progress === 50 || progress === 100,
+      route: Routes.EMERGENCY_CONTACT,
+    },
+    {
+      id: 4,
+      title: "Informations médicales",
+      description: "Antécédents médicaux pertinents pour l'éligibilité",
+      active: progress === 75 || progress === 100,
+      route: Routes.MEDICAL_INFORMATION,
+    },
+  ];
+
+  const activeBox = {
+    bgColor: "$primaryNormal",
+    padding: 16,
+    gap: 12,
+    minHeight: "30%",
+    justifyContent: "center",
+    color: "$white",
+    borderRadius: 18,
+  };
+
+  const inactiveBox = {
+    bgColor: "$textLight0",
+    padding: 16,
+    gap: 10,
+    justifyContent: "center",
+    color: "$primaryNormal",
+    borderRadius: 0,
+  };
+
   return (
     <Box>
       {steps.map((step, index) => {
@@ -74,7 +77,7 @@ export const StepIndicator = () => {
           >
             <Box alignItems="center" marginRight={16}>
               <Icon
-                as={step.active ? CircleIcon : CheckCircleIcon}
+                as={step.active ? CheckCircleIcon : CircleIcon}
                 color="$primaryNormal"
               />
               {index < steps.length - 1 && (

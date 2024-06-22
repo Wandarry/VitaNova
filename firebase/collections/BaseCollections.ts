@@ -48,7 +48,7 @@ export class BaseCollection<T extends DocumentData> {
     return querySnapshot.docs[0]?.data() ?? null;
   }
 
-  async getById(id: string) {
+  async getByID(id: string) {
     const ref = doc(firestoreDb, this.name, id) as DocumentReference<T, T>;
     const docSnap = await getDoc<T, T>(ref);
     return docSnap.exists() ? docSnap.data() : null;
