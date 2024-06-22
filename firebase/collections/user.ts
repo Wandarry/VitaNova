@@ -14,9 +14,16 @@ class UserCollection extends BaseCollection<UserEntity> {
     instance = this;
   }
 
-  // obtain a user information record from the user's e-mail address
-  getUserByEmail(email: string): Promise<UserEntity | null> {
-    return this.getFirstBy("email", email);
+  async getUserByEmail(email: string): Promise<[UserEntity, string] | null> {
+    const snapshot = await this.getFirstSnapshotBy("email", email);
+    if (!snapshot) {
+      return null;
+    }
+
+    const id = snapshot.id;
+    const data = snapshot.data();
+
+    return [data, id];
   }
 }
 

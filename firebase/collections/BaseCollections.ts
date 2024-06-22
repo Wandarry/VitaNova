@@ -15,6 +15,7 @@ import {
   updateDoc,
   increment,
   UpdateData,
+  getDoc,
 } from "firebase/firestore";
 import firestoreDb from "../firestore";
 
@@ -38,11 +39,23 @@ export class BaseCollection<T extends DocumentData> {
     return setDoc<T, T>(ref, documentWithTimestampFields, option);
   }
 
-  protected async getFirstBy(fieldName: string, value: string) {
+  async getSnapshotBy(fieldName: string, value: string) {
     const ref = collection(firestoreDb, this.name) as CollectionReference<T, T>;
 
     const q = query<T, T>(ref, where(fieldName, "==", value), limit(1));
     const querySnapshot = await getDocs<T, T>(q);
+
+    return querySnapshot;
+  }
+
+  async getFirstSnapshotBy(fieldName: string, value: string) {
+    const querySnapshot = await this.getSnapshotBy(fieldName, value);
+
+    return querySnapshot.docs[0];
+  }
+
+  protected async getFirstBy(fieldName: string, value: string) {
+    const querySnapshot = await this.getSnapshotBy(fieldName, value);
 
     return querySnapshot.docs[0]?.data() ?? null;
   }
@@ -87,4 +100,9 @@ export class BaseCollection<T extends DocumentData> {
 
     return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
   };
+  async getById(ID: string) {
+    const ref = doc(firestoreDb, this.name, ID) as DocumentReference<T, T>;
+    const snapshot = await getDoc<T, T>(ref);
+    return snapshot.exists() ? { ...snapshot.data(), id: snapshot.id } : null;
+  }
 }
