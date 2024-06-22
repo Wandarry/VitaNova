@@ -16,6 +16,5 @@ export enum Routes {
   FAQ = "/userProfile/faq",
   USER_PROFILE = "userProfile",
   NEWS = "news",
-  ARTICLE_DETAIL = "/news/articleDetail",
   EVENT_DETAIL = "news/eventDetail",
 }

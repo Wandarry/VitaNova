@@ -23,9 +23,15 @@ const RecentArticles = () => {
       <FlatList
         showsVerticalScrollIndicator={false}
         data={data}
-        renderItem={({ item }) => (
-          <NewsCard {...item} publicationDate={timeAgo(item.publicationDate)} />
-        )}
+        renderItem={({ item }) => {
+          return (
+            <NewsCard
+              {...item}
+              publicationDate={timeAgo(item.publicationDate)}
+              id={item.id}
+            />
+          );
+        }}
         keyExtractor={(item) => item.id}
       />
     );
