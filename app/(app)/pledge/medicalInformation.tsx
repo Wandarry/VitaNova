@@ -43,7 +43,7 @@ export default function MedicalInformation() {
         description: "Votre engagement est enregistré avec succès",
         type: "success",
       });
-      router.replace(Routes.PLEDGE_CATEGORIES_SUMMARY);
+      router.replace(Routes.DONOR_CARD);
     } else {
       showToast({
         title: "Oups...réessayez",
