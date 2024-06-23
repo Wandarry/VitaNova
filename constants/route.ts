@@ -18,4 +18,5 @@ export enum Routes {
   NEWS = "news",
   ARTICLE_DETAIL = "/news/articleDetail",
   EVENT_DETAIL = "news/eventDetail",
+  DONOR_CARD = "/pledge/donorCard",
 }
