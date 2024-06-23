@@ -104,7 +104,7 @@ export default function Onboarding() {
           >
             <Text
               fontSize="$4xl"
-              fontWeight="$semibold"
+              fontFamily="Livvic_500"
               textAlign="left"
               color="$white"
             >

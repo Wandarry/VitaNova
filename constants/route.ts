@@ -18,4 +18,5 @@ export enum Routes {
   NEWS = "news",
   EVENT_DETAIL = "news/eventDetail",
   DONOR_CARD = "/pledge/donorCard",
+  LOG_OUT = "/userProfile/logOut",
 }

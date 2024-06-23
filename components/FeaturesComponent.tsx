@@ -33,6 +33,10 @@ export function FeaturesComponent() {
     router.navigate(Routes.NEWS);
   };
 
+  const goToChat = () => {
+    router.navigate(Routes.CHAT);
+  };
+
   return (
     <HStack w="100%" justifyContent="space-between">
       <Box gap="$2" alignItems="center">
@@ -46,7 +50,7 @@ export function FeaturesComponent() {
         </Text>
       </Box>
       <Box gap="$2" alignItems="center">
-        <FeatureButton isDisabled={false} icon={Chat} />
+        <FeatureButton isDisabled={false} icon={Chat} onPress={goToChat} />
         <Text color="$primaryNormal" fontSize={15} fontFamily="Livvic_600">
           Chat
         </Text>
