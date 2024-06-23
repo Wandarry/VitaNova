@@ -12,12 +12,12 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import { Share } from "@/components/icons/share";
 import { router, useLocalSearchParams } from "expo-router";
-import { Comment } from "@/components/icons/comment";
 import { LikeNews } from "@/components/LikeNews";
-import { CommentInput } from "@/components/uikit/Input/dumb/CommentInput";
+import { CommentInput } from "@/components/uikit/Input/CommentInput";
 import { timeAgo } from "@/helpers/timeAgo";
 import { useArticle } from "@/hooks/useArticle";
 import { ArticleContent } from "@/components/ArticleContent";
+import { CommentBottomSheet } from "@/components/CommentBottomSheet";
 
 export default function ArticleDetail() {
   const { id } = useLocalSearchParams();
@@ -100,16 +100,7 @@ export default function ArticleDetail() {
                   </Text>
                 </HStack>
                 <HStack gap={16}>
-                  <HStack alignItems="center" gap={8}>
-                    <Icon as={Comment} h={18} w={18} color="$primaryNormal" />
-                    <Text
-                      fontFamily="Livvic_600"
-                      fontSize={15}
-                      color="$primaryNormal"
-                    >
-                      32 k
-                    </Text>
-                  </HStack>
+                  <CommentBottomSheet articleID={id as string} />
                   <HStack alignItems="center" gap={8}>
                     <Icon as={Share} h={18} w={18} color="$primaryNormal" />
                     <Text
@@ -132,7 +123,7 @@ export default function ArticleDetail() {
         </ScrollView>
       </Box>
       <Box position="relative" bottom={0}>
-        <CommentInput />
+        <CommentInput articleID={id as string} />
       </Box>
     </>
   );

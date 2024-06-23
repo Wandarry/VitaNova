@@ -71,10 +71,10 @@ export class BaseCollection<T extends DocumentData> {
 
     return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
   }
-  async getAllBy(fieldName: string, value: string) {
+  async getAllBy(fieldName: string, value: string, size = 100) {
     const ref = collection(firestoreDb, this.name) as CollectionReference<T, T>;
 
-    const q = query<T, T>(ref, where(fieldName, "==", value), limit(1));
+    const q = query<T, T>(ref, where(fieldName, "==", value), limit(size));
     const querySnapshot = await getDocs<T, T>(q);
 
     return querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
