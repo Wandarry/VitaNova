@@ -13,7 +13,7 @@ import { Share } from "@/components/icons/share";
 import { router } from "expo-router";
 import { Comment } from "@/components/icons/comment";
 import { LikeNews } from "@/components/LikeNews";
-import { CommentInput } from "@/components/uikit/Input/dumb/CommentInput";
+import { CommentInput } from "@/components/uikit/Input/CommentInput";
 import { DateSchedule } from "@/components/DateSchedule";
 import { GoogleMeetSchedule } from "@/components/GoogleMeetSchedule";
 
@@ -115,7 +115,7 @@ export default function ArticleDetail() {
         </ScrollView>
       </Box>
       <Box position="relative" bottom={0}>
-        <CommentInput />
+        {/* <CommentInput  /> */}
       </Box>
     </>
   );

@@ -17,7 +17,11 @@ export const ArticleContent = ({ articleID }: ArticleContentProps) => {
   }
 
   if (data) {
-    return <Text color="$black">{data.content}</Text>;
+    return (
+      <Text color="$black" fontSize={18}>
+        {data.content}
+      </Text>
+    );
   }
 
   return (
