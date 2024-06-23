@@ -1,6 +1,5 @@
 import userCollectionInstance from "@/firebase/collections/user";
 import { UserEntity } from "@/types/collections/user";
-import { setUserId } from "firebase/analytics";
 import { User } from "firebase/auth";
 import { useState, useEffect } from "react";
 

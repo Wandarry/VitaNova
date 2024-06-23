@@ -10,6 +10,8 @@ import { NewsTag } from "./uikit/NewsTag";
 import { Favorite } from "./icons/favorite";
 import { Share } from "./icons/share";
 import { Comment } from "./icons/comment";
+import { router } from "expo-router";
+import { Routes } from "@/constants/route";
 
 type NewsCardProps = {
   label: string;
@@ -18,7 +20,7 @@ type NewsCardProps = {
   author: string;
   title: string;
   description: string;
-  onpress?: () => void;
+  id?: string;
 };
 
 export const NewsCard = ({
@@ -28,7 +30,7 @@ export const NewsCard = ({
   image,
   description,
   author,
-  onpress,
+  id,
 }: NewsCardProps) => {
   return (
     <Pressable
@@ -42,7 +44,7 @@ export const NewsCard = ({
       elevation={20}
       shadowRadius={33}
       bgColor="$white"
-      onPress={onpress}
+      onPress={() => router.push(`${Routes.NEWS}/${id}`)}
     >
       <HStack px={18} gap={12} alignItems="center">
         <NewsTag style="card" title={label} />
