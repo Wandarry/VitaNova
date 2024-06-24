@@ -4,6 +4,7 @@ import { UserEntity } from "@/types/collections/user";
 import { useAuthState } from "@/hooks/useAuthState";
 import { useUserData } from "@/hooks/useUserData";
 import firebaseAuth from "@/firebase/auth";
+import { clearStorage } from "@/utils/clearStorage";
 
 interface AuthContextValue {
   user: User | null;
@@ -32,6 +33,7 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
   const { userData, error } = useUserData(user);
 
   const logOut = async () => {
+    await clearStorage();
     await signOut(firebaseAuth);
   };
 

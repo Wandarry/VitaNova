@@ -7,12 +7,20 @@ import { Approval } from "./icons/approval";
 
 export const UserProfileLinks = () => {
   const goToPledgeSummary = () => {
-    router.replace(Routes.PLEDGE_CATEGORIES_SUMMARY);
+    router.navigate(Routes.PLEDGE_CATEGORIES_SUMMARY);
+  };
+
+  const goToFaq = () => {
+    router.navigate(Routes.FAQ);
+  };
+
+  const goToLogOut = () => {
+    router.navigate(Routes.LOG_OUT);
   };
 
   return (
     <Box gap={24}>
-      <Pressable>
+      <Pressable onPress={goToLogOut}>
         <HStack gap={16} alignItems="center">
           <Box
             justifyContent="center"
@@ -30,7 +38,7 @@ export const UserProfileLinks = () => {
         </HStack>
       </Pressable>
 
-      <Pressable>
+      <Pressable onPress={goToFaq}>
         <HStack gap={16} alignItems="center">
           <Box
             justifyContent="center"
